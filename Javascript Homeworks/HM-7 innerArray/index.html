@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>Первый блок</div>
+    <div>Второй блок</div>
+    <div>Третий блок</div>
+    <script>
+
+        let example = ["Hello", "World", "Kiev", "Kharkiv", "Odessa", "Lviv"];
+        let example2 = ["1", "2", "3", "sea", "user", 23];
+        let example3 = ['Hello', undefined, null,'World', 23, 159, 0, '23',
+         undefined, true, false, null, -Infinity, Infinity]
+
+        function outArray (array = example, element = document.body){
+            const wrapperLi = array.map(function(item){
+                return `<li>${item}</li>`
+            });
+            const inner = wrapperLi.join('')
+            return element.insertAdjacentHTML('afterbegin', `<ul>${inner}</ul>`)
+        }
+        outArray(example3, document.body.children[1])
+    </script>
+
+</body>
+</html>

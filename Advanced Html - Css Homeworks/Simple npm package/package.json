@@ -1,0 +1,32 @@
+{
+  "name": "project-x",
+  "version": "0.0.1",
+  "description": "Evgeniy Shigartsov FEM-8",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/evgeniy.shigartsov2/homeworks.git"
+  },
+  "keywords": [
+    "npmHomework"
+  ],
+  "author": "Evgeniy Shigartsov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/evgeniy.shigartsov2/homeworks/issues"
+  },
+  "homepage": "https://gitlab.com/evgeniy.shigartsov2/homeworks#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.13",
+    "eslint": "^7.12.1",
+    "gulp": "^4.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "moment": "^2.29.1"
+  }
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS HM-1</title>
+</head>
+<body>
+    <script>
+
+        let name = prompt('Enter your name', 'Tony');
+        let age = +prompt('Enter your age', '24');
+
+        while (name == null) {
+            name = prompt('You have to enter your name')
+        }
+
+        while (isNaN(age)) {
+           age = +prompt('Enter the correct age')
+        }
+        
+        if (age <18) {
+            alert ('You are not allowed to this website.')
+        } else if (age <= 22) {
+            let answer = confirm('Are you sure want to continue?')
+                if (answer) {
+                    alert('Welcome' + ' ' + name)
+                } else {alert('You are not allowed to this website.')}
+        } else {alert('Welcome' + ' ' + name)}
+
+    </script>
+</html>

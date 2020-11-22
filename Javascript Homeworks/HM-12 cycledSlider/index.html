@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Banners</title>
+        <style>
+            .image-to-show {
+                width: 400px;
+                height: 400px;
+            }
+            .images-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin-bottom: 10px;
+            }
+            .image-to-hide {
+                display: none;
+            }
+            .btn {
+                height: 40px;
+                width: 170px;
+                margin: 0 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="images-wrapper">
+            <img src="./img/1.jpg" alt="image of game" class="image-to-show" />
+            <img src="./img/2.jpg" alt="image of game" class="image-to-hide" />
+            <img src="./img/3.JPG" alt="image of game" class="image-to-hide" />
+            <img src="./img/4.png" alt="image of game" class="image-to-hide" />
+        </div>
+        <button class="btn stop">Прекратить</button>
+        <button class="btn resume">Возобновить показ</button>
+        <span class="seconds-timer"></span><span class="miliseconds-timer"></span>
+        <script>
+            function showNextImage() {
+                const currentImg = document.querySelector('.image-to-show')
+                currentImg.className = 'img image-to-hide'
+                const newImage = currentImg.nextElementSibling
+                if (newImage) {
+                    newImage.className = 'img image-to-show'
+                } else {
+                    const firstImage = document.querySelector('.img')
+                    firstImage.className = 'img image-to-show'
+                }
+            }
+            let imageTimer = setInterval(showNextImage, 3000)
+
+            const stop = document.querySelector('.stop')
+            stop.addEventListener('click', () => {
+                clearInterval(imageTimer)
+            })
+            const resume = document.querySelector('.resume')
+            resume.addEventListener('click', () => {
+                imageTimer = setInterval(showNextImage, 3000)
+            })
+
+            // пытался создать таймер для милисекунд, вроде бы должно работать но все равно происходят задержки
+            // насколько я понял изза того что браузер не успевает обрабатывать все это в такой промужуток времени
+            // имею ввиду что если секунды у нас три, а милисекунд указать 100, то браузер не успевает за 1 секунду произвести 100 итерраций
+            // для милисекунд, от того и задержки.
+            // Но это конечно если я все правильно понял))
+
+            // const secondsTimer = document.querySelector('.seconds-timer');
+            // let second = 3;
+            // const secondTimer = setInterval(() => {
+
+            // secondsTimer.textContent = `До показа следующей картинки: ${--second}:`;
+            //   if (second === 0) {
+            //     second = 3;
+            //   }
+
+            //   const milisecondsTimer = document.querySelector('.miliseconds-timer');
+            //   let miliseconds = 100;
+            //   const milisecondTimer = setInterval(() =>{
+
+            //     milisecondsTimer.textContent = `${--miliseconds}`;
+            //     if (miliseconds === 0){
+            //       miliseconds = 100
+            //     }
+            //   }, 30)
+            // }, 3000);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,337 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Open Sans';
+}
+.btn-to-top {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    padding: 15px 40px;
+    z-index: 5;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: yellowgreen;
+    
+}
+.btn-to-top:hover{
+    background-color: olivedrab;
+}
+.slide-toggle{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgb(120, 172, 16);
+    transform: translateY(46px);
+    margin-left: 50px;
+    color: rgb(83, 3, 3);
+    padding: 15px 15px;
+    width: 130px;
+}
+
+/* header */
+
+.navigation-menu {
+    display: flex;
+    justify-content: space-between;
+    background-color: #313131;
+}
+.site-logo {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+}
+.logo {
+    margin: 10px 20px;
+    font-size: 22px;
+    text-decoration: none;
+    color: white;
+}
+.menu-container {
+    margin-right: 85px;
+}
+.menu-link {
+    display: flex;
+    justify-content: center;
+    margin: 11px;
+    list-style: none;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+}
+.menu-link:hover {
+    color: #14B9D5;
+}
+.search-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    width: 68px;
+}
+.anchors-box {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(158, 157, 157);
+}
+.anchors {
+    text-transform: uppercase;
+    text-decoration: none;
+    margin: 0 15px;
+    color: yellow;
+}
+.page-header { 
+    background-image: url(../images/header-img.jpeg);
+    background-repeat: no-repeat;
+    background-position: -10px -585px;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    line-height: 37px;
+    font-weight: bold;
+}
+.latest-news {
+    text-align: center;
+    letter-spacing: 3.7px;
+}
+.main-links-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.main-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    border-radius: 5px;
+    margin: 25px 5px;
+    padding: 14px 10px;
+}
+.main-links:active{
+    transform: scale(0.97);
+}
+.subscribe {
+    background-color: #89CA62;
+}
+.best-articles {
+    background-color: #14B9D5;
+}
+.description-headers {
+    text-align: center;
+    padding: 30px 0 15px 0;
+    color: #18B4CF;
+    font-weight: bold;
+}
+
+/* popular posts */
+
+.popular-posts {
+    background-color: #F2F2F2;
+}
+.popular-posts-content {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    padding-top: 0;
+}
+.post-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+    background-color: #FFFFFF;
+    padding-bottom: 20px;
+}
+.post-name {
+    margin-top: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #353A3D;
+}
+.post-name:hover {
+    color: teal;
+}
+.post-name:active {
+    transform: scale(0.9);   
+}
+
+/* most popular clients */
+
+.our-clients {
+    background-image: url(../images/central-img.jpeg);
+    background-position-y: -280px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.popular-clients {
+    text-align: center;
+    padding-top: 100px;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+}
+.popular-clients::after {
+    content: "___";
+    position: relative;
+    color: #18B4CF;
+    top: 85px;
+    right: 13%;
+}
+.client-logo {
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(20, 1fr);
+    align-items: center;
+    justify-items: center;
+    grid-gap: 0 20px;
+}
+.nt-post {
+    grid-row: 4;
+    grid-column: 7 / 7;
+    transition: 0.8s;
+}
+.dryme {
+    grid-row: 4;
+    grid-column: 9 / 10;
+    transition: 0.8s;
+}
+.house-home {
+    grid-row: 4;
+    grid-column: 11 / 12;
+    transition: 0.8s;
+}
+.journy {
+    grid-row: 4;
+    grid-column: 13 / 14;
+    transition: 0.8s;
+}
+.nt-post:hover, .dryme:hover, .house-home:hover, .journy:hover{
+    transform: scale(1.2);
+}
+
+/* top rated */
+
+.top-rated-block {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+.rated-images {
+    width: 100%;
+}
+
+/* hot news */
+
+.news-container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto;
+    max-width: 70%;
+}
+.news-link {
+    text-decoration: none;
+    color: #353A3D;
+}
+.news-link:hover {
+    text-decoration: underline;
+    color: lightsteelblue;
+}
+.news-header {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.background {
+    background-color: #F9F7F7;
+}
+.emirate-spain {
+    display: inline-flex;
+    margin-top: 15px;
+}
+.emirate {
+    display: inline-flex;
+    margin-right: 15px;
+}
+.emirate-description {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+.nebula-ireland-header {
+
+    /* общий класс для нижнего левого и правого верхнего заголовков в разделе hot-news */
+
+    text-align: center;
+    padding-top: 15px;
+
+}
+.egypt-mal-ten-gb {
+    display: grid;
+    grid-gap: 35px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 35px;
+}
+.resort-photo{
+    width: 100%;
+}
+.egypt-mal-ten-gb-headers {
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.text {
+    text-align: right;
+    margin-right: 20px;
+}
+.ireland-kings-spain {
+    display: inline-flex;
+    margin-top: 35px;
+}
+.kings-spain {
+    display: inline-flex;
+    margin-left: 20px;
+}
+.kings-spain-description {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+/* footer */
+
+.footer {
+    background-color: black;
+    padding: 15px;
+    margin-top: 70px;
+}
+.footer-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 38px;
+}
+.footer-text {
+    color: white;
+}

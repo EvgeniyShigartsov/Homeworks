@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        function createUser() {
+            let firstName = prompt('Enter your name', 'Tony');
+            let lastName = prompt('Enter the last name', 'Stark');
+
+            let newUser = {
+                    name: firstName,
+                    'last name': lastName,
+
+                    getLogin() {
+                        firstName = firstName.toLocaleLowerCase();
+                        lastName = lastName.toLocaleLowerCase();
+                        let login = firstName[0]+lastName; 
+                        return login;
+                    }               
+            }
+            return newUser
+        }   
+        console.log(createUser().getLogin());
+
+    </script>
+
+</body>
+</html>

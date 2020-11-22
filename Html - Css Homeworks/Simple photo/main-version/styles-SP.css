@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+}
+ * {
+   box-sizing: border-box;
+ }
+ .overflow {
+    overflow-x: hidden;
+    min-width: 800px;
+ }
+.navigation {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin: 20px 5px;
+}
+.nav-link {
+    margin: 0 70px;
+    padding: 0 10px;
+    color: tomato;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Montserrat", sans-serif;
+    font-size: 25px;
+}
+.image {
+   width: 100%;
+}
+.header-2 {
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+}
+.main-text {
+    display: block;
+    font-family: Montserrat;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+}
+.button {
+    background: tomato;
+    border: 1px;
+    border-color: tomato;
+    color: white;
+    font-size: 15px;
+    padding: 17px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin: 20px 0;
+    border-radius: 5px;
+    font-family: "Montserrat", sans-serif;
+}
+.footer {
+    text-align: right;
+    margin: 60px 200px 60px 0;
+    padding: 5px;
+    font-family: "Montserrat", sans-serif;
+}

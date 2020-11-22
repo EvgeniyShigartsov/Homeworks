@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        function enterData(message, defaultValue){
+            let writtenData = '';
+            do {
+                writtenData = prompt(message, defaultValue)
+            } while (writtenData === '' || writtenData === null)
+            return writtenData;
+        };
+        let firstName = enterData('What is your name?', 'Ivan')
+        let lastName = enterData('What is your surename?', 'Kravchenko')
+        let birthday = enterData('When is your birthday?', '01.01.2030')
+
+        function createUser(name, surename, birthday) {
+            let newUser = {
+                name: firstName,
+                lastName: lastName,
+                birthday: birthday,
+                getPassword(){
+                    let password;
+                    let year = birthday.split('.')
+                    firstName = firstName[0].toLocaleUpperCase();
+                    lastName = lastName.toLocaleLowerCase();
+                    return password = firstName[0]+lastName+year[2];
+                },
+                getAge() {                        
+                    let birthdayReversed = birthday.split('.');
+                    birthdayReversed = birthdayReversed.reverse();
+                    let birthdayReversedInMs = Date.parse(birthdayReversed);
+                    let now = Date.now();
+                    let age = Math.floor((now - birthdayReversedInMs) / (1000 * 3600 * 24 * 365.25));
+                    return age;
+                }
+            }
+            return newUser;
+        }
+        console.log(createUser(firstName, lastName, birthday));
+        console.log(createUser(firstName, lastName, birthday).getAge());
+        console.log(createUser(firstName, lastName, birthday).getPassword());
+            
+    </script>
+
+</body>
+</html>

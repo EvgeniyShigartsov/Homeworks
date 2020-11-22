@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+}
+a {
+    text-decoration: none;
+}
+.container {
+    width: 1280px;
+    margin: 0 auto;
+}
+.logo {
+    margin: 61px 0 38px 0;
+    font-size: 80px;
+    color: black;
+}
+.logo span {
+    color: lightskyblue;
+}
+.navigation {
+    display: flex;
+    width: 100%;
+}
+.nav-item {
+    min-width: fit-content;
+    padding: 26px 40px 19px 40px;
+    font-size: 24px;
+    background-color: #35444F;
+    color: white;
+}
+.nav-item:first-child {
+    flex-grow: 1;
+    max-width: 162px;
+}
+.nav-item:last-child {
+    flex-grow: 1;
+}
+.nav-item:not(:last-child) {
+    border-right: 1px solid white;
+}
+.nav-item:not(:first-child):hover {
+    background-color: #222F3A;
+}
+.main-section {
+    margin-top: 50px;
+}
+.main-section .container {
+    display: flex;
+}
+.aside {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    min-width: 344px;
+    margin-right: 52px;
+    border: 1px solid #000000;
+}
+.aside-item {
+    padding: 27px 0 27px 42px;
+    color: #485863;
+    font-size: 27px;
+    line-height: 27px;
+}
+.aside-item:hover {
+    background-color: #DBDBDB;
+    text-indent: 30px;
+    color: #35444F;
+}
+.image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
+.image {
+    margin: 74px 0;
+    transition: 1s;
+}
+.image:hover {
+    transform: scale(1.1);
+}
+.description {
+    margin: 37px 0 64px 0;
+}
+.text {
+    font-size: 18px;
+    line-height: 24px;
+    color: #2C2C2C;
+}
+.text:first-child {
+    margin-bottom: 34px;
+}
+.footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    font-size: 28px;
+    padding: 22px 0;
+    background-color: rgba(99, 105, 110, 0.48);
+}
+.footer-link {
+    margin-right: 20px;
+    color: #0C1927;
+}
+.footer-link:first-child {
+    margin-left: 40px;
+}
+.footer-link:hover {
+    color: rgb(66, 143, 168);
+    text-decoration: underline;
+}
+.copyright {
+    margin-right: 40px;
+}

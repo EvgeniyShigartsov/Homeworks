@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        let min = +prompt('Enter the min number', '20');
+        let max = +prompt('Enter the max number', '100');
+        let primes = [];
+        
+
+        while (isNaN(min) || isNaN(max) || min > max) {
+            min = +prompt('Erorr:  you have to enter both numbers correctly, enter a min number', '20');
+            max = +prompt('Erorr:  you have to enter both numbers correctly, enter a max number', '100');
+        }       
+        
+        for(let i = min; i <= max; i++) {
+            let isPrime = true;
+            for(let k = 2; k < i; k++){
+                
+                if (i % k === 0){
+                    isPrime = false;
+                    break
+                }
+            } 
+            if(isPrime) primes.push(i)
+        }
+        console.log(primes);
+        
+    </script>
+
+</body>
+</html>

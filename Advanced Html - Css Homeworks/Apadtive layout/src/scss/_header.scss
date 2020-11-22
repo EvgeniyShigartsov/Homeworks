@@ -1,0 +1,99 @@
+ .navigation {
+    @include flex-center;
+    margin: 45px 0 51px 0;
+
+    .nav-item {
+        margin: 0 32px;
+        color: $primary-color;
+        text-transform: uppercase;
+        font-size: 11px;
+    }
+    .nav-item:hover {
+        color: #57A4A4;
+    }
+}
+.intro__img {
+    width: 100%;
+}
+
+@media (max-width: 1199px) {
+    .navigation .nav-item {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width:767px) {
+    .navigation-box {
+        position: relative;
+        margin-top: 80px;
+    }
+    .burger-wrapper {
+        position: absolute;
+        right: 0;
+        top: -63px;
+
+        .burger {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            width: 44px;
+            height: 37px;
+            background-color: black;
+            cursor: pointer;
+            .line {
+                height: 2px;
+                width: 17px;
+                background-color: white;
+                position: absolute;
+                transition: all .3s linear;
+            }
+            .line-first {
+                top: 13px;
+            }
+            .line-second, .line-third {
+                top: 17px;
+            }
+            .line-fourth{
+                top: 21px;
+            }
+        }
+        .burger.active .line-first, .burger.active .line-fourth{
+            opacity: 0;
+        }
+        .burger.active .line-second {
+            transform: rotate(45deg);
+        }
+        .burger.active .line-third {
+            transform: rotate(-45deg);
+        }
+    }
+    .navigation {
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        top: -26px;
+        min-width: 182px;
+        margin: 0;
+        transform: scaleX(0);
+        transform-origin: 100% 0%;
+        transition: all .3s linear;
+        background-color: #F5F5F5;
+        z-index: 1;
+    }
+    .navigation.active {
+        transform: scaleX(1);
+    }
+    .nav-item {
+        width: 100%;
+        padding: 5px 0 5px 14px;
+        font-size: 13px;
+        line-height: 22px;
+    }
+    .navigation .nav-item:hover {
+        color: $primary-color;
+        background-color: #E5E5E5;
+    }
+    .navigation .nav-item:active {
+        color: #57A4A4;
+    }
+}

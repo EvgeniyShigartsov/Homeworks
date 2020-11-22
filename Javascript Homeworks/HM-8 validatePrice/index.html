@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 250px 100px;
+        }
+        .input {
+            margin: 2px 0;
+            outline: none;
+            display: block;
+        }
+        .blur {
+            border: 1px solid black;
+            color: limegreen;
+        }
+        .focus {
+            border: 4px solid lightgreen;
+        }
+        .incorrect-price {
+            border: 4px solid lightsalmon;
+        }
+    </style>
+</head>
+<body>
+    <div class="price-box" hidden>
+        <span class="current-price">Текущая цена:</span>
+        <button class="hide" style="margin-left: 5px;">x</button>
+    </div>
+    <input type="text" placeholder="100" class="input">
+    <span class="wrong-price" hidden>Please enter correct price</span>
+    
+    <script>
+        const priceBox = document.querySelector('.price-box');
+        const currentPrice = document.querySelector('.current-price');
+        const hide = document.querySelector('.hide');
+        const input = document.querySelector('.input');
+        const wrongPrice = document.querySelector('.wrong-price');
+        
+        input.addEventListener('focus', (event) => { event.target.classList.add('focus')});
+        input.addEventListener('blur', chekInputField)
+        hide.addEventListener('click', clearInput)
+            
+        function chekInputField(event){
+            if (input.value > 0){
+            input.classList = 'input blur'
+            priceBox.hidden = false;
+            wrongPrice.hidden = true;
+            currentPrice.textContent = `Текущая цена: ${input.value}`;
+            } else {
+                wrongPrice.hidden = false;
+                input.classList = 'input incorrect-price'
+            }
+        }
+        function clearInput(event){
+            priceBox.hidden = true;
+            input.value = '';
+            input.classList = 'input'
+        }
+    </script>
+</body>
+</html>

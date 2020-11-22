@@ -1,0 +1,21 @@
+.best-articles {
+    background-color: rgb(167, 185, 5);
+}
+.subscribe {
+    background-color: olivedrab;
+}
+body, .popular-posts, .description-headers, .top-rated-block {
+    background-color: rgb(75, 73, 73);
+}
+.description-headers {
+    color: rgb(172, 161, 11);
+}
+.post-img, .background {
+    background-color: wheat;
+}
+.menu-link, .logo {
+    color: rgb(248, 208, 139);
+}
+.btn {
+    background-color: wheat;
+}

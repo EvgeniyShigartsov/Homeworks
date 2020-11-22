@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci</title>
+</head>
+<body>
+    <script>
+
+        // const num = +prompt('Enter a number', 7);
+    
+        function fibonacci(f1, f2, n){
+            if (n > 0){
+                let a = f1;
+                let b = f2;
+                for (let i = 3; i <= n; i++){
+                    let c = a + b;
+                    console.log(a);
+                    console.log(b);
+                    console.log(c);
+                    a = b;
+                    b = c;
+                    console.log(`C = ${c}`);
+                }
+            return b;
+            } else if (n < 0){
+                let a = f1;
+                let b = f2;
+                for (let i = 3; i <= n; i--){
+                    let c = a + b;
+                    console.log(a);
+                    console.log(b);
+                    console.log(c);
+                    a = b;
+                    b = c;
+                    console.log(`C = ${c}`);
+            }
+            return b
+        }
+        }
+        console.log(fibonacci(1,1,-7));
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+        let example = ['Hello', undefined, null, Symbol, 'World', 23, 159, 0, '23', undefined,
+        Boolean, true, false, null, -Infinity, Infinity, Object, obj = {name: 'Tony', age: 20}, function(){}]
+
+        function filterBy(array = example, type = 'string') {
+            const newArray = [];
+            array.forEach(item => {if(typeof(item) !== type) newArray.push(item)})
+            return newArray;
+        }
+        // function filterBy(array = example, type = 'string') {
+        //     const newArray = [];
+        //     for(let item of array) {
+        //         if(typeof(item) !== type){
+        //             newArray.push(item)
+        //         }
+        //     } 
+        //     return newArray;
+        // }
+
+        console.log(filterBy(example, 'number'));
+        console.log(example.length);
+    </script>
+  </body>
+</html>

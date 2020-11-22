@@ -1,0 +1,305 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-image: url(../images/bg-1.png);
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    font-family: 'Ubuntu';
+}
+.links {
+    text-decoration: none;
+    color: white;
+}
+
+    /* Header */
+
+.header {
+    width: 100vw;
+    height: 59px;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+.logo {
+    margin-left: 50px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 1.3px;
+}
+.iocns-welcome-box {
+    margin-right: 100px;
+    display: flex;
+}
+.calendar-icon {
+    background-image: url(../images/calendar.svg);
+    width: 21px;
+    height: 24px;
+}
+.mail-icon {
+    background-image: url(../images/mail.svg);
+    background-size: 24px;
+    width: 24px;
+    height: 24px;
+    margin: 0 20px 0 20px;
+}
+.compass-icon {
+    background-image: url(../images/compass.svg);
+    width: 23px;
+    height: 24px;
+}
+.welcome::before {
+    content: "|";
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 25px 0px 25px;
+    opacity: 0.5;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+}
+
+    /* Header-hover */
+
+.header:hover .logo, .header:hover .login-h, .header:hover .signup-h{
+    color: #01813F;
+}
+.header:hover .calendar-icon {
+    background-image: url(../images/calendar-2.svg);
+}
+.header:hover .mail-icon {
+    background-image: url(../images/mail-2.svg);
+}
+.header:hover .compass-icon {
+    background-image: url(../images/compass-2.svg);
+}
+.header:hover .welcome::before {
+    opacity: 0.1;
+}
+
+    /* Card */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 59px);
+}
+.card {
+    width: 30%;
+    background-color: white;
+    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.52);
+    padding: 25px 45px 25px 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+    /* Card Header */
+
+.green-clip {
+    width: 18px;
+    height: 18px;
+    background-color: #3CB878;
+    position: absolute;
+    top: 4.8%;
+    left:0;
+}
+.card-heading {
+    width: 100%;
+}
+.sign-up {
+    font-size: 20px;
+    font-weight: normal;
+    color: #434343;
+}
+.login {
+    color: #3CB878;
+}
+.login:hover, .terms-link:hover{
+    color: #01813F;
+    text-decoration: underline;
+
+    /* Общий класс для для ссылки login вверху формы и принятия правил внизу */
+
+}
+.card-title {
+    display: flex;
+    justify-content: space-between;
+}
+.social-networks-box {
+    display: flex;
+    margin-top: 30px;
+}
+.facebook {
+    width: calc(50% - 2.5px);
+    height: 48px;
+    background-color: #305DB8;
+    border-radius: 3px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+}
+.facebook-icon {
+    margin-left: 15px;
+}
+.vertical-line-facebook {
+    width: 1px; 
+    background-color: #0A162F; 
+    height: 30px; 
+    opacity: 0.1;
+    margin: 0 18px;    
+}
+.facebook:hover {
+    background-color: #022263;
+    transition: background-color 0.4s;
+}
+
+.google {
+    width: calc(50% - 2.5px);
+    height: 48px;
+    background-color: #DF4A32;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+.google-icon {
+    margin-left: 12px;
+}
+.vertical-line-google {
+    width: 1px; 
+    background-color: #0A162F; 
+    height: 30px; 
+    opacity: 0.1;
+    margin: 0 30px 0 7px;   
+}
+.google:hover {
+    background-color: #AB1F09;
+    transition: background-color 0.4s;
+}
+
+    /* Horizontal line */
+
+.or {
+    color: #848484;
+    font-size: 14px;
+    position: absolute;  
+    background-color: white;
+    top: -8px;
+    padding: 0 15px;
+}
+.horizontal-line {
+    width: 100%;
+    margin-top: 35px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.horizontal-line::before {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: #F2F2F2;    
+}
+
+    /* Form part */
+
+.form-box {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.input {
+    margin-bottom: 12px;
+    border: 1px solid #F2F2F2;
+    border-radius: 4px;
+    padding: 15px;
+    font-family: 'Ubuntu';
+    font-weight: 500;
+    outline: none;
+    color: #434343;
+}
+.input::placeholder {
+    color: #BEBEBE;
+    font-weight: 500;
+    font-style: normal;
+}
+.input:focus {
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.21);
+    transition: 0.3s;
+}
+
+    /* Checkbox */
+
+.checkbox {
+    margin-bottom: 20px;
+    font-size: 14px;
+    position: relative;
+}
+.checkbox-input {
+    appearance: none;
+    position: absolute;
+}
+.checkbox-label {
+    padding-left: 28px;
+    color: #434343;
+    cursor: pointer;
+}
+.checkbox-label::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #F2F2F2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.checkbox-label::after {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-image: url(../images/checkbox-0.svg);
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    opacity: 0;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    z-index: 2;
+    transition: opacity .1s linear;
+}
+.checkbox-input:checked + .checkbox-label::after {
+    opacity: 1;
+    transition: 0.3s;
+}
+.card:hover .checkbox-label::after {
+    background-image: url(../images/checkbox.svg);
+    transition: 0.3s;
+}
+.terms-link {
+    color: rgba(60, 184, 120, 0.8);
+}
+
+    /* Other */
+
+.create-account {
+    height: 46px;
+    background-color: rgba(60, 184, 120, 0.8);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.create-account:hover {
+    background-color: #01813F;
+    transition: 0.4s;
+}

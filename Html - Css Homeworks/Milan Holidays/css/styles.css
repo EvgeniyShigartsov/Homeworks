@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-image: url(../images/Background.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 1349px;
+    font-family: 'Roboto';
+    margin: 0 auto;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+.container {
+    width: 1030px;
+    margin: 0 auto;
+}
+
+    /* Heading */
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 51px;
+    font-size: 18px;
+    line-height: normal;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+}
+.logo-image {
+    background-image: url(../images/logo.png);
+    width: 53px;
+    height: 47px;
+}
+.logo:hover .logo-image {
+    background-image: url(../images/logo-hover.png);
+}
+.logo:hover .logo-text, .logo:hover .logo-image{
+    color: #F26522   
+}
+.milan, .holidays {
+    margin-left: 10px;
+}
+.milan {
+    font-size: 29px;   
+}
+.holidays {
+    display: block;
+}
+.contacts {
+    display: flex;
+    flex-direction: column;
+}
+.phone {
+    margin-top: 19px;
+    text-align: right;
+}
+.contacts:hover .email, .contacts:hover .phone {
+    color: #F26522
+}
+
+    /* common clases for content */
+
+.tours {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.tour-header {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 18px;
+}
+.tour-info {
+    background-color: #F26522;
+    width: 100%;
+    padding: 7px 0px 10px 16px;
+    position: absolute;
+    transition: 0.5s ease-in-out;
+    opacity: 0;
+}
+.tour-info p {
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+.price {
+    font-size: 20px;
+    margin-right: 128px;
+}
+.detalis {
+    font-size: 14px;
+}
+.detalis::after {
+    content: url(../images/right-arrow.svg);
+    margin-left: 10px;
+}
+.sight, .art {
+    margin: 0 65px;
+}
+.bars, .walk, .art {
+    margin-top: 48px;
+}
+
+    /* content */
+
+.gallery-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.gallery:hover .tour-header {
+    color: #F26522;
+}
+.gallery:hover .tour-info {
+    opacity: 1;
+}
+
+.footer {
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    padding: 50px 0;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 50px 100px;
+        }
+        .btn {
+            display: block;
+            height: 35px;
+        }
+        .input {
+            margin: 5px 0 15px 0;
+            display: block;
+            width: 230px;
+            height: 20px;
+        }
+        .circle {
+            border-radius: 100%;
+            display: inline;
+            margin: 3px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            flex-wrap: wrap;
+            border: 5px solid #ccc;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn default">Нарисовать круги</button>
+    <script>
+    'use strict'
+    
+    const btn = document.querySelector('.btn');
+    btn.addEventListener('click', showInput);
+
+    function showInput(){
+        if(btn.classList.contains('default')){
+            btn.insertAdjacentHTML('afterend', '<input class="input" type="text" placeholder="Введите диаметр круга в пикселях">')
+            btn.textContent = 'Нарисовать!'
+            btn.classList.remove('default')
+        } else if (!btn.classList.contains('default')){
+            const input = document.querySelector('.input');
+            input.insertAdjacentHTML('afterend', '<div class="container"></div>');
+            const container = document.querySelector('.container');
+            
+            function drawCircles(value){
+                for (let i = 1; i <= 100; i++){
+                    container.insertAdjacentHTML('beforeend',`<div class="circle" style="width: ${value}px; height: ${value}px;"></div>`);
+                }
+                const circles = document.querySelectorAll('.circle')
+                getRandomColor(circles)
+                input.remove()
+            }
+            drawCircles(input.value);
+            
+            function getRandomColor(element){
+                for (let elem of element){
+                        let red = Math.floor(Math.random() * 255)
+                        let green = Math.floor(Math.random() * 255)
+                        let blue = Math.floor(Math.random() * 255)
+                        elem.style.backgroundColor = `rgb(${red},${green},${blue})`
+                    }
+            }
+
+            container.addEventListener('click', deleteCircle);
+            function deleteCircle(e){
+                if (event.target !== container){
+                    event.target.remove()
+                }
+            }
+
+            // кнопку очистки добавил чисто для удобства, в тз этого нету
+            container.insertAdjacentHTML('afterend', '<button class="btn" id="clear-button">Очистить все</button>');
+            const clearButton = document.querySelector('#clear-button');
+            clearButton.addEventListener('click', clear)
+            function clear(){
+                input.remove();
+                container.remove();
+                clearButton.remove();
+                btn.textContent = 'Нарисовать круги';
+                btn.classList.add('default')
+            }
+        }
+    }
+    </script>
+
+
+<!--Вопросы:
+   1. По ходу выполнения хотел оптимизировать, разделить код на несколько логических частей и вынести
+    за пределы родительской функции(showInput), но в таком случае при выборке нужного узла, код выполняеться
+    сразу, в тот момент когда основная функция еще не создала требуемый узел.
+    Как правильно в таком случае строить структуру, если по условию нельзя создавать дополнительные теги в HTML,
+    или единственный способ делать все действия внутри родительской функции?
+   2. Ну и вообще, попадаються ли в реальной работе подобные ограничения на создание тегов в HTML?
+   3. Не очень было ясно про кнопки "Нарисовать круг", должна ли она была меняться?-->
+</body>
+</html>

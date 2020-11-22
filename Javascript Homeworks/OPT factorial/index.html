@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            let num = +prompt('Enter a number', 5)
+
+            while (isNaN(num) || num <= 0 || num === null) {
+                num = +prompt('Enter a number correctly', 5)
+            }
+
+            function factorial(num) {
+                if (num === 1) {
+                    return num
+                } else {
+                    num = num * factorial(num - 1)
+                    console.log(num)
+                }
+                return num
+            }
+            console.log(factorial(num))
+
+            // function factorial (num) {
+            //     let res = 1;
+            //     for(let i = 1; i <= num; i++ ) {
+            //         res *= i;
+            //     }
+            //     return res;
+            // }
+            // console.log(factorial(num));
+        </script>
+    </body>
+</html>

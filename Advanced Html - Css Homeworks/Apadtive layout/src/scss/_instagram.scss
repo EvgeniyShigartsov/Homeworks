@@ -1,0 +1,58 @@
+.instagram-section {
+    background-color: rgba(0, 0, 0, 0.03);
+    padding: 84px 0 49px 0;
+}
+.images-wrapper {
+    position: relative;
+    display: flex;
+}
+.images-wrapper::before, .images-wrapper::after {
+    position: absolute;
+    top: -37px;
+    color: $primary-color;
+    font-weight: $font-w700;
+    text-transform: uppercase;
+}
+.images-wrapper::before {
+    content: '- Latest Instagram Shots';
+    left: 0;
+    font-size: fosi16;
+}
+.images-wrapper::after {
+    content: 'go to our instagram page -';
+    right: 0;
+    font-size: 12px;
+    cursor: pointer;
+}
+.instagram-image:not(:last-child) {
+    margin-right: 5px;
+}
+.instagram-image img {
+    max-width: 100%;
+}
+
+@media (max-width: 1199px) {
+    .images-wrapper {
+        justify-content: space-between;
+    }
+    .instagram-image:last-child {
+        display: none;
+    }
+    .images-wrapper::after {
+        right: 8px;
+    }
+}
+@media (max-width:700px){
+    .instagram-section {
+        background-color: white;
+        padding: 64px 0 42px 0;
+    }
+    .instagram-image:not(:first-child), .images-wrapper::after {
+        display: none;
+    }
+    .images-wrapper::before {
+        content: '-Last Instagram Shot';
+        top: -27px;
+        font-size: 14px;
+    }
+}

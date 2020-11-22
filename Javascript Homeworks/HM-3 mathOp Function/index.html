@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        let numOne = prompt('Enter the first number', '5');
+        let numSecond = prompt('Enter the second number', '20');
+
+        while(isNaN(numOne) || isNaN(numSecond) || numOne === null || numSecond === null || numOne === '' || numSecond === '') {
+            numOne = prompt('Erorr:  you have to enter both numbers correctly, enter a first number', '5');
+            numSecond = prompt('Erorr:  you have to enter both numbers correctly, enter a second number', '100')
+        }
+        numOne = +numOne;
+        numSecond = +numSecond;
+
+        let op = prompt('Enter a math operation', '+');
+
+        while (op != '*' && op != '/' && op != '+' && op != '-' ) {
+            op = prompt('Enter a math operation correctly +  -   *  /', '+');
+        }
+        
+        function mathOp (numOne, numSecond, op) {
+            let sum;
+
+            switch(op) {
+                case '+':
+                    sum = numOne + numSecond;
+                    break
+                case '-':
+                    sum = numOne - numSecond;
+                    break
+                case '*':
+                    sum = numOne * numSecond;
+                    break
+                case '/':
+                    sum = numOne / numSecond;
+                    break
+            }                      
+            return sum;
+        }
+        console.log(mathOp(numOne, numSecond, op));
+    </script>
+
+</body>
+</html>

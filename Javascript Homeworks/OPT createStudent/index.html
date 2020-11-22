@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Student</title>
+</head>
+<body>
+    
+    <script>
+        const student = {
+            name: getData('What is your Name?', 'Elon'),
+            surename: getData('What is your Surename?', 'Musk'),
+            table: {},
+        }
+        function getData(message, defaultValue){
+            return writtenData = prompt(message, defaultValue);
+        }
+
+        function setTable(obj){
+            while (true){
+                let propety = prompt('Введите название прдмета', 'Math')
+                if (propety !== null && propety !== ''){
+                    propety = `"${propety}"` // обернул в кавычки свойство, посолькольку название предмета может быть из двух+ слов.
+                    let value = +prompt(`Ведите оценку по предмету:  ${propety}`, 5)
+                    obj.table[propety] = value;
+                } else {
+                    break;
+                }
+            }
+        }
+        setTable(student)
+
+        function countPoints(obj){
+            let points = 0;
+            let keys = 0;
+            let badPoints = 0;
+            for (let key in obj.table){
+                keys++
+                points += obj.table[key];
+                if (obj.table[key] < 4){
+                    badPoints++
+                }
+            }
+            let averageScore = Math.round(points / keys);
+
+            if (badPoints === 0){
+                console.log('Cтудуент переведен на следуюущий курс.');
+            } else {
+                console.log('Документы студента переданы в военкомат))');
+            }
+            if (averageScore > 7){
+                console.log('Студенту назначена стипендия.');
+            }
+            console.log(`Колличество предметов: ${keys}`);
+            console.log(`Средний балл: ${averageScore}`);
+            console.log(`Колличество оценок ниже 4: ${badPoints}`);
+        }
+        countPoints(student);
+        console.log(student);
+    </script>
+
+</body>
+</html>
