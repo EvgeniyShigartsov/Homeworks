@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            li {
+                margin-bottom: 15px;
+            }
+            li div {
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script>
+            const books = [
+                {
+                    author: 'Скотт Бэккер',
+                    name: 'Тьма, что приходит прежде',
+                    price: 70,
+                },
+                {
+                    author: 'Скотт Бэккер',
+                    name: 'Воин-пророк',
+                },
+                {
+                    name: 'Тысячекратная мысль',
+                    price: 70,
+                },
+                {
+                    author: 'Скотт Бэккер',
+                    name: 'Нечестивый Консульт',
+                    price: 70,
+                },
+                {
+                    author: 'Дарья Донцова',
+                    name: 'Детектив на диете',
+                    price: 40,
+                },
+                {
+                    author: 'Дарья Донцова',
+                    name: 'Дед Снегур и Морозочка',
+                },
+            ]
+            const root = document.querySelector('#root')
+            function addList(parentELem, array) {
+                const ul = document.createElement('ul')
+                parentELem.appendChild(ul)
+                array.forEach((el) => {
+                    try {
+                        const currentAutor = el.author
+                        const currentName = el.name
+                        const currentPrice = el.price
+
+                        if (currentAutor && currentName && currentPrice) {
+                            ul.insertAdjacentHTML('beforeend', `<li>${currentAutor}: ${currentName} <div>price ${currentPrice}</div></li>`)
+                        } else if (!currentAutor) {
+                            throw new Error('в обьекте отсутствует свойство "autor"')
+                        } else if (!currentName) {
+                            throw new Error('в обьекте отсутствует свойство "name"')
+                        } else if (!currentPrice) {
+                            throw new Error('в обьекте отсутствует свойство "price"')
+                        }
+                    } catch (err) {
+                        console.log(`${err.name}: ${err.message}`)
+                    }
+                })
+            }
+            addList(root, books)
+        </script>
+    </body>
+</html>
