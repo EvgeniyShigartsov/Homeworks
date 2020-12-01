@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            class Employee {
+                constructor(name, age, salary) {
+                    this._name = name
+                    this._age = age
+                    this._salary = salary
+                }
+                checkNumber(value) {
+                    return typeof value === 'number' && !isNaN(value) ? true : false
+                }
+                checkString(value) {
+                    return typeof value === 'string' && value !== '' && value !== ' ' ? true : false
+                }
+                set name(value) {
+                    this.checkString(value) ? (this._name = value) : console.log(`Name is not valid.`)
+                }
+                set age(value) {
+                    this.checkNumber(value) ? (this._age = value) : console.log('Age should be a number.')
+                }
+                set salary(value) {
+                    this.checkNumber(value) ? (this._salary = value) : console.log('Salary should be in numbers.')
+                }
+                get name() {
+                    return this._name
+                }
+                get age() {
+                    return this._age
+                }
+                get salary() {
+                    return this._salary
+                }
+            }
+
+            class Programmer extends Employee {
+                constructor(name, age, salary, lang) {
+                    super(name, age, salary)
+                    this._lang = lang
+                }
+                set lang(value) {
+                    this.checkString(value) ? (this._lang = value) : console.log(`Lang is not valid.`)
+                }
+                set salary(value) {
+                    this.checkNumber(value) ? (this._salary = value) : console.log('Salary should be in numbers.')
+                }
+                get lang() {
+                    return this._lang
+                }
+                get salary() {
+                    return this._salary * 3
+                }
+            }
+            const programmer1 = new Programmer('Jack', 25, 1500, 'JavaScript')
+            const programmer2 = new Programmer('Bob', 27, 2000, 'Node.Js')
+            const programmer3 = new Programmer('John', 30, 2500, 'Phyton')
+            console.log(programmer1)
+            programmer1.name = null
+            programmer1.age = '30'
+            programmer1.salary = 'Two thousand'
+            programmer1.lang = []
+
+            programmer1.name = 'Ivan'
+            programmer1.age = 23
+            programmer1.salary = 2000
+            programmer1.lang += ', Java'
+            console.log(programmer1)
+            console.log(programmer2)
+            console.log(programmer3)
+        </script>
+    </body>
+</html>
