@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                font-family: 'Ubuntu', sans-serif;
+            }
+            ul li {
+                margin-bottom: 20px;
+            }
+            ul li div {
+                margin-top: 10px;
+                line-height: 20px;
+            }
+            ol {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <ul class="list"></ul>
+        <script>
+            const ul = document.querySelector('.list ')
+            async function showInfo() {
+                const response = await fetch('https://swapi.dev/api/films/')
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        data.results.forEach((item) => {
+                            addMovieInfo(ul, item)
+                            addCharartersList(ul, item)
+                        })
+                    })
+            }
+            function addMovieInfo(parentElem, obj) {
+                parentElem.insertAdjacentHTML(
+                    'beforeend',
+                    `<li>
+                        Movie name: <b>${obj.title}</b>,
+                        episode: <b>${obj.episode_id}</b>,
+                        description: <div>${obj.opening_crawl}</div>
+                        <div><b>Characters:</b></div> 
+                    </li>`
+                )
+            }
+            function addCharartersList(parentElem, array) {
+                const ol = document.createElement('ol')
+                array.characters.forEach(async (item) => {
+                    const character = await fetch(`${item}`)
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((data) => {
+                            ol.insertAdjacentHTML('beforeend', `<li>${data.name}</li>`)
+                        })
+                })
+                parentElem.appendChild(ol)
+            }
+            showInfo()
+        </script>
+    </body>
+</html>
