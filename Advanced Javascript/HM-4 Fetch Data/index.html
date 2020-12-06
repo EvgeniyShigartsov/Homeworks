@@ -11,6 +11,9 @@
             ul li {
                 margin-bottom: 20px;
             }
+            ul div {
+                margin-bottom: 15px;
+            }
             ul li div {
                 margin-top: 10px;
                 line-height: 20px;
@@ -25,16 +28,16 @@
     <body>
         <ul class="list"></ul>
         <script>
-            const ul = document.querySelector('.list ')
-            async function showInfo() {
-                const response = await fetch('https://swapi.dev/api/films/')
+            const list = document.querySelector('.list ')
+            function showMovieInfo() {
+                const response = fetch('https://swapi.dev/api/films/')
                     .then((response) => {
                         return response.json()
                     })
                     .then((data) => {
                         data.results.forEach((item) => {
-                            addMovieInfo(ul, item)
-                            addCharartersList(ul, item)
+                            addMovieInfo(list, item)
+                            addCharartersList(list, item)
                         })
                     })
             }
@@ -45,14 +48,14 @@
                         Movie name: <b>${obj.title}</b>,
                         episode: <b>${obj.episode_id}</b>,
                         description: <div>${obj.opening_crawl}</div>
-                        <div><b>Characters:</b></div> 
                     </li>`
                 )
             }
             function addCharartersList(parentElem, array) {
+                parentElem.insertAdjacentHTML('beforeend', '<div><b>Characters: </b></div>')
                 const ol = document.createElement('ol')
-                array.characters.forEach(async (item) => {
-                    const character = await fetch(`${item}`)
+                array.characters.forEach((item) => {
+                    const character = fetch(`${item}`)
                         .then((response) => {
                             return response.json()
                         })
@@ -62,7 +65,29 @@
                 })
                 parentElem.appendChild(ol)
             }
-            showInfo()
+            showMovieInfo()
+
+            // Вопросы
+            // 1. Хотел сделать аонимацию загрузки, пока подгружается список персонажей, но не понял как их добавить одноверменно, а не по мере подгрузки, как сейчас, по идее в 66 строке список должен добавлятся вконце итеррации, когда все загружено ? Ведь функция addCharacters вызывается один раз для каждого обьекта в массиве results, загружаются все персонажи, и добавляются ? Вообщем, как это правильно надо было реализовать ?
+            // 2. Как получить данные из промиса в отдельную переменную ? т.е хотел data.results вынести отдельно в переменную, и уже потом использовать, пробовал сделать это так:
+            {
+                function test() {
+                    let result = 'Not a target' // переменная куда дальше хочу записать новое значение
+                    const response = fetch('https://swapi.dev/api/films/')
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((data) => {
+                            console.log(data.results) // нужный массив
+                            result = data.results // присваиваю новое значение
+                            console.log(result) // получил его в переменную
+                        })
+                    return result // Возвращаю результат, но значение не изменилось. Уже знаю что then возвращает промис, но я ведь там внтури колбека присвоил значние в result ? Вообщем, как получить эти данные отдельно в переменную ?
+                }
+                console.log(test())
+                // еще пробовал сделать тоже самое дописав перед функцией async и await перед фетчем.
+            }
+            // 3. Как в целом можно упростить код ?
         </script>
     </body>
 </html>
