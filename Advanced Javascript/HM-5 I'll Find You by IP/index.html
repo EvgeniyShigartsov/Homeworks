@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                margin: 100px 150px;
+            }
+        </style>
+    </head>
+    <body>
+        <button class="btn">Вычислить по IP</button>
+        <script>
+            const DOMAIN = 'http://ip-api.com/'
+            const getIP = 'https://api.ipify.org/?format=json'
+            const btn = document.querySelector('.btn')
+            btn.addEventListener('click', findLocationByIp)
+            let status = false
+            async function findLocationByIp() {
+                if (status) return // проверка что бы при повторном нажатии функция повторно не запускалась, и не добавляла те же самые данные снова.
+
+                const response = await fetch(getIP)
+                const ip = await response.json()
+
+                const fields = 'fields=continent,country,region,regionName,city,district'
+                const request = await fetch(`${DOMAIN}json/${ip.ip}?${fields}`)
+                const data = await request.json()
+                console.log(data)
+
+                const list = document.createElement('ul')
+                for (let key in data) {
+                    const listItem = document.createElement('li')
+                    listItem.innerHTML = `${key} : ${data[key]}`
+                    list.appendChild(listItem)
+                }
+                document.body.appendChild(list)
+                status = true
+            }
+        </script>
+    </body>
+</html>
