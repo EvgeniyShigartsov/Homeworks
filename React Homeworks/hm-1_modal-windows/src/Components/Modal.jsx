@@ -42,5 +42,4 @@ class Modal extends React.Component {
         )
     }
 }
-// className={this.props.active ? 'modal-wrapper' : 'modal-wrapper display-none'}
 export default Modal
