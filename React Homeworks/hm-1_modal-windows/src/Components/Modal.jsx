@@ -6,31 +6,41 @@ export { Modal }
 class Modal extends React.Component {
     constructor(props) {
         super(props)
-        this.closeBtn = <Button classList="close-btn" text="X" backgroundColor="#ccc" onClick={() => this.props.setActive(false)} />
+        this.state = { active: false }
+        this.closeBtn = <Button classList="close-btn" text="X" backgroundColor="#ccc" onClick={this.setActive} />
+    }
+    setActive = () => {
+        this.setState({ active: !this.state.active })
     }
     modalWrapperHandler = (e) => {
         if (!e.target.classList.contains('modal-wrapper')) return
-        this.props.setActive(false)
+        this.setState({ active: false })
     }
+
     render() {
         return (
-            <div className={this.props.active ? 'modal-wrapper' : 'modal-wrapper display-none'} onClick={this.modalWrapperHandler}>
-                <div className="modal-pop-up">
-                    <div className="modal-content">
-                        {this.props.closeButton ? this.closeBtn : ''}
-                        <h3 className="modal-header">{this.props.header}</h3>
-                        <div className="modal-body">
-                            <p>{this.props.text}</p>
-                        </div>
-                        <div className="modal-footer">
-                            <Button classList="btn" backgroundColor="#17a2b8" text={this.props.btnText.cancel} onClick={() => this.props.setActive(false)} />
-                            <Button classList="btn" backgroundColor="#dc3545" text={this.props.btnText.ok} onClick={() => this.props.setActive(false)} />
+            <div>
+                <Button classList="btn" backgroundColor={this.props.openBtnBackground} text={this.props.btnToOpen} onClick={this.setActive} />
+                {this.state.active && (
+                    <div className="modal-wrapper" onClick={this.modalWrapperHandler}>
+                        <div className="modal-pop-up">
+                            <div className="modal-content">
+                                {this.props.closeButton ? this.closeBtn : ''}
+                                <h3 className="modal-header">{this.props.header}</h3>
+                                <div className="modal-body">
+                                    <p>{this.props.text}</p>
+                                </div>
+                                <div className="modal-footer">
+                                    <Button classList="btn" backgroundColor="#17a2b8" text={this.props.btnText.cancel} onClick={this.setActive} />
+                                    <Button classList="btn" backgroundColor="#dc3545" text={this.props.btnText.ok} onClick={this.setActive} />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
             </div>
         )
     }
 }
-
+// className={this.props.active ? 'modal-wrapper' : 'modal-wrapper display-none'}
 export default Modal
