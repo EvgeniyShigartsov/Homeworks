@@ -1,0 +1,74 @@
+{
+    "cars": [
+        {
+            "name": "Acura CDX",
+            "Price": "23 000$",
+            "url": "http://cdn.motorpage.ru/Photos/800/1B6B.jpg",
+            "article": 21001,
+            "color": "bronze"
+        },
+        {
+            "name": "Alfa Romeo 159",
+            "Price": "23 500$",
+            "url": "http://cdn.motorpage.ru/Photos/800/4f8e6c5e0dfb1.jpg",
+            "article": 21002,
+            "color": "red"
+        },
+        {
+            "name": "Aston Martin DB9",
+            "Price": "41 500$",
+            "url": "http://cdn.motorpage.ru/Photos/800/1AAC.jpg",
+            "article": 21003,
+            "color": "silver"
+        },
+        {
+            "name": "Bentley Continental GT",
+            "Price": "201 000$",
+            "url": "http://cdn.motorpage.ru/Photos/800/110F6.jpg",
+            "article": 21004,
+            "color": "darkolive"
+        },
+        {
+            "name": "BMW X6",
+            "Price": "50 000$",
+            "url": "http://cdn.motorpage.ru/Photos/800/2DF6.jpg",
+            "article": 21005,
+            "color": "bronze"
+        },
+        {
+            "name": "Cadillac Sixty Special",
+            "Price": "83 000$",
+            "url": "http://cdn.motorpage.ru/Photos/800/35_A77173.jpg",
+            "article": 21006,
+            "color": "balck"
+        },
+        {
+            "name": "Chevrolet Camaro",
+            "Price": "64 500$",
+            "url": "http://cdn.motorpage.ru/Photos/800/6A47.jpg",
+            "article": 21007,
+            "color": "blue"
+        },
+        {
+            "name": "Ford Focus",
+            "Price": "24 500$",
+            "url": "http://cdn.motorpage.ru/Photos/800/1FF8.jpg",
+            "article": 21008,
+            "color": "darkblue"
+        },
+        {
+            "name": "Honda Accord",
+            "Price": "22 500$",
+            "url": "http://cdn.motorpage.ru/Photos/800/1DB3.jpg",
+            "article": 21009,
+            "color": "tomato"
+        },
+        {
+            "name": "Tesla Model X",
+            "Price": "77 500$",
+            "url": "http://cdn.motorpage.ru/Photos/800/18FD.jpg",
+            "article": 21010,
+            "color": "white"
+        }
+    ]
+}
