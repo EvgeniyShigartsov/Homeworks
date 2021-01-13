@@ -38,7 +38,7 @@ class CarCard extends React.Component {
                     <p className="card-field">Color: {this.props.color}</p>
                     <p className="card-field">Article: {this.props.article}</p>
                     <button className="btn-cart card-field" onClick={() => this.setState({ isOpenModal: !this.state.isOpenModal })}>
-                        add to cart
+                        Add to cart
                     </button>
                     {this.state.isOpenModal && (
                         <Modal
