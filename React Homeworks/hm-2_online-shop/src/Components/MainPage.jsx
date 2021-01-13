@@ -1,6 +1,7 @@
 import React from 'react'
 import cars from './Cars.jsx'
 import CarCard from './CarCard.jsx'
+import PropTypes from 'prop-types'
 
 export default class MainPage extends React.Component {
     constructor(props) {
@@ -10,18 +11,6 @@ export default class MainPage extends React.Component {
         this.state = {
             product: [],
         }
-        this.modalOne = {
-            header: 'Add to cart',
-            text: `Add to cart this product`,
-            openBtn: {
-                text: 'Open first modal',
-                backgroundColor: '#007bff',
-            },
-            btnText: {
-                add: 'Add to cart',
-                back: 'Back',
-            },
-        }
     }
     componentDidMount() {}
     render() {
@@ -29,10 +18,13 @@ export default class MainPage extends React.Component {
             <div className="container">
                 <div className="cars-gallery">
                     {this.carsArr.map((car) => (
-                        <CarCard src={car.url} name={car.name} price={car.price} color={car.color} article={car.article}></CarCard>
+                        <CarCard src={car.url} name={car.name} price={car.price} color={car.color} article={car.article} key={car.url} />
                     ))}
                 </div>
             </div>
         )
     }
+}
+MainPage.propTypes = {
+    carsArr: PropTypes.array,
 }
