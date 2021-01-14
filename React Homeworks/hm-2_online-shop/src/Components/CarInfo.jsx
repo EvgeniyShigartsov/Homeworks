@@ -1,7 +1,6 @@
 import React from 'react'
 import StarSvg from './StarSvg.jsx'
 import PropTypes from 'prop-types'
-
 class CarInfo extends React.Component {
     render() {
         return (
@@ -23,6 +22,13 @@ class CarInfo extends React.Component {
     }
 }
 export default CarInfo
+CarInfo.defaultProps = {
+    showStar: false,
+    showBtn: false,
+    onStarClick: () => false,
+    onBtnClick: () => false,
+}
+
 CarInfo.propTypes = {
     showStar: PropTypes.bool,
     showBtn: PropTypes.bool,
