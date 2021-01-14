@@ -19,6 +19,7 @@ class Modal extends React.Component {
                                 <h3 className="modal-header">{this.props.header}</h3>
                                 <div className="modal-body">
                                     <p>{this.props.text}</p>
+                                    <div className="modal-children">{this.props.children}</div>
                                 </div>
                                 <div className="modal-footer">
                                     <Button classList="btn" backgroundColor="#6c757d" text={this.props.btnText.back} onClick={this.props.onCancelBtnClick} />

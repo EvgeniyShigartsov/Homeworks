@@ -105,10 +105,13 @@ code {
             }
             .modal-body {
                 display: flex;
-                align-items: center;
+                flex-direction: column;
                 min-height: 150px;
                 font-size: 18px;
-
+                .car-info {
+                    color: black;
+                    margin: 10px 0 20px 0;
+                }
                 p {
                     margin-top: 10px;
                     line-height: 24px;
