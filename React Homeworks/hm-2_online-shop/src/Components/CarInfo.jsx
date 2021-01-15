@@ -1,34 +1,30 @@
 import React from 'react'
-import StarSvg from './StarSvg.jsx'
 import PropTypes from 'prop-types'
-class CarInfo extends React.Component {
-    render() {
-        return (
-            <div className="car-info">
-                <div className="title-group card-field">
-                    <h4 className="car-title">{this.props.name}</h4>
-                    {this.props.showStar && <StarSvg labelFor={this.props.name} onClick={this.props.onStarClick} />}
-                </div>
-                <p className="card-field">Price: {this.props.price} </p>
-                <p className="card-field">Color: {this.props.color}</p>
-                <p className="card-field">Article: {this.props.article}</p>
-                {this.props.showBtn && (
-                    <button className="btn-cart card-field" onClick={this.props.onBtnClick}>
-                        Add to cart
-                    </button>
-                )}
+import StarSvg from './StarSvg.jsx'
+import Button from './Button.jsx'
+
+export const CarInfo = (props) => {
+    return (
+        <div className="car-info">
+            <div className="title-group card-field">
+                <h4 className="car-title">{props.name}</h4>
+                {props.showStar && <StarSvg labelFor={props.name} isFavorite={props.isFavorite} onClick={props.onStarClick} />}
             </div>
-        )
-    }
+            <p className="card-field">Price: {props.price} </p>
+            <p className="card-field">Color: {props.color}</p>
+            <p className="card-field">Article: {props.article}</p>
+            {props.showBtn && <Button classList="btn-cart card-field" onClick={props.onBtnClick} backgroundColor="#28a745" text="Add to cart" />}
+        </div>
+    )
 }
 export default CarInfo
+
 CarInfo.defaultProps = {
     showStar: false,
     showBtn: false,
     onStarClick: () => false,
     onBtnClick: () => false,
 }
-
 CarInfo.propTypes = {
     showStar: PropTypes.bool,
     showBtn: PropTypes.bool,

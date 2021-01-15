@@ -1,60 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Modal from './Modal.jsx'
 import CarInfo from './CarInfo.jsx'
 
-class CarCard extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { isOpenModal: false }
+const CarCard = (props) => {
+    const [isOpenModal, setIsOpenModal] = useState(false)
 
-        this.modalFields = {
-            header: 'Add to cart',
-            text: `Add to cart this product ?`,
-            btnText: {
-                add: 'Add to cart',
-                back: 'Back',
-            },
-        }
+    const modalFields = {
+        header: 'Add to cart',
+        text: `Add to cart this product ?`,
+        btnText: {
+            add: 'Add to cart',
+            back: 'Back',
+        },
     }
-    checkItemInLocalStorage = (itemName) => {
+    const checkItemInLocalStorage = (itemName) => {
         localStorage.getItem(itemName) ? localStorage.removeItem(itemName) : localStorage.setItem(itemName, itemName)
-        this.setState({ isOpenModal: false })
+        setIsOpenModal(() => false)
     }
-    modalWrapperHandler = (e) => {
+    const modalWrapperHandler = (e) => {
         if (e.target.id !== 'modal-wrapper') return
-        this.setState({ isOpenModal: false })
+        setIsOpenModal(() => false)
     }
-    render() {
-        return (
-            <div className="card-wrapper">
-                <img className="car-img" src={this.props.src} alt={this.props.name} />
-                <CarInfo
-                    name={this.props.name}
-                    price={this.props.price}
-                    article={this.props.article}
-                    color={this.props.color}
-                    showStar={true}
-                    showBtn={true}
-                    onStarClick={() => this.checkItemInLocalStorage(this.props.name)}
-                    onBtnClick={() => this.setState({ isOpenModal: !this.state.isOpenModal })}
-                />
-                {this.state.isOpenModal && (
-                    <Modal
-                        text={this.modalFields.text}
-                        header={this.modalFields.header}
-                        btnText={this.modalFields.btnText}
-                        isOpen={this.state.isOpenModal}
-                        onWrapperClick={this.modalWrapperHandler}
-                        onCancelBtnClick={() => this.setState({ isOpenModal: !this.state.isOpenModal })}
-                        onConfrimBtnClick={() => this.checkItemInLocalStorage(this.props.name)}
-                    >
-                        <CarInfo name={this.props.name} price={this.props.price} article={this.props.article} color={this.props.color} />
-                    </Modal>
-                )}
-            </div>
-        )
-    }
+    return (
+        <div className="card-wrapper">
+            <img className="car-img" src={props.src} alt={props.name} />
+            <CarInfo name={props.name} price={props.price} article={props.article} color={props.color} showStar={true} showBtn={true} onBtnClick={() => setIsOpenModal((prev) => !prev)} />
+            {isOpenModal && (
+                <Modal
+                    text={modalFields.text}
+                    header={modalFields.header}
+                    btnText={modalFields.btnText}
+                    isOpen={isOpenModal}
+                    onWrapperClick={modalWrapperHandler}
+                    onCancelBtnClick={() => setIsOpenModal((prev) => !prev)}
+                    onConfrimBtnClick={() => checkItemInLocalStorage(props.name)}
+                >
+                    <CarInfo name={props.name} price={props.price} article={props.article} color={props.color} />
+                </Modal>
+            )}
+        </div>
+    )
 }
 export default CarCard
 CarCard.propTypes = {

@@ -1,37 +1,29 @@
 import React from 'react'
-import Button from './Button.jsx'
-import '../App.scss'
 import PropTypes from 'prop-types'
+import Button from './Button.jsx'
 
-class Modal extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { active: true }
-    }
-
-    render() {
-        return (
-            <div>
-                {this.props.isOpen && (
-                    <div id="modal-wrapper" className="modal-wrapper" onClick={this.props.onWrapperClick}>
-                        <div className="modal-pop-up">
-                            <div className="modal-content">
-                                <h3 className="modal-header">{this.props.header}</h3>
-                                <div className="modal-body">
-                                    <p>{this.props.text}</p>
-                                    <div className="modal-children">{this.props.children}</div>
-                                </div>
-                                <div className="modal-footer">
-                                    <Button classList="btn" backgroundColor="#6c757d" text={this.props.btnText.back} onClick={this.props.onCancelBtnClick} />
-                                    <Button classList="btn" backgroundColor="#28a745" text={this.props.btnText.add} onClick={this.props.onConfrimBtnClick} />
-                                </div>
+export const Modal = (props) => {
+    return (
+        <div>
+            {props.isOpen && (
+                <div id="modal-wrapper" className="modal-wrapper" onClick={props.onWrapperClick}>
+                    <div className="modal-pop-up">
+                        <div className="modal-content">
+                            <h3 className="modal-header">{props.header}</h3>
+                            <div className="modal-body">
+                                <p>{props.text}</p>
+                                <div className="modal-children">{props.children}</div>
+                            </div>
+                            <div className="modal-footer">
+                                <Button classList="btn" backgroundColor="#6c757d" text={props.btnText.back} onClick={props.onCancelBtnClick} />
+                                <Button classList="btn" backgroundColor="#28a745" text={props.btnText.add} onClick={props.onConfrimBtnClick} />
                             </div>
                         </div>
                     </div>
-                )}
-            </div>
-        )
-    }
+                </div>
+            )}
+        </div>
+    )
 }
 export default Modal
 
