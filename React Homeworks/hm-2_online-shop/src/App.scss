@@ -10,6 +10,20 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+.banner-wrapper {
+    .banner {
+        min-width: 100%;
+        height: 250px;
+    }
+}
+.favorite-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    background-color: rgb(247, 209, 203);
+    gap: 10px;
+    margin-bottom: 20px;
+}
 .container {
     max-width: 1200px;
     margin: 100px auto 0 auto;
@@ -20,33 +34,71 @@ code {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     gap: 20px 10px;
+    background-color: rgba(224, 212, 191, 0.836);
+    padding: 10px;
+}
+.card-info {
+    padding: 10px 25px;
+    background-color: #f7f5f1;
+    min-height: 150px;
+
+    .card-field {
+        margin-bottom: 10px;
+        word-wrap: normal;
+    }
+
+    .title-group {
+        display: flex;
+        justify-content: space-between;
+
+        .card-title {
+            font-weight: bold;
+        }
+        .star-img {
+            z-index: 1;
+            margin: 0 10px;
+            cursor: pointer;
+            g.favorite {
+                fill: black;
+            }
+        }
+    }
+
+    .btn-cart {
+        width: 100%;
+        padding: 7px 10px;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        border: none;
+    }
 }
 .card-wrapper {
     max-width: 300px;
-
     .car-img {
         width: 100%;
         height: 300px;
     }
-    .car-info {
+    .card-info {
         padding: 10px 25px;
         background-color: #f7f5f1;
+        min-height: 150px;
 
         .card-field {
             margin-bottom: 10px;
+            word-wrap: normal;
         }
 
         .title-group {
             display: flex;
             justify-content: space-between;
 
-            .car-title {
+            .card-title {
                 font-weight: bold;
             }
             .star-img {
                 z-index: 1;
-                margin-right: 20px;
-                position: relative;
+                margin: 0 10px;
                 cursor: pointer;
                 g.favorite {
                     fill: black;
@@ -89,6 +141,9 @@ code {
             padding: 15px 25px;
             color: white;
 
+            .modal-children {
+                color: black;
+            }
             .close-btn {
                 position: absolute;
                 padding: 5px;

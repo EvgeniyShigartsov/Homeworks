@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export const Button = (props) => {
     return (
         <button className={props.classList} style={{ backgroundColor: props.backgroundColor }} onClick={props.onClick}>
-            {props.text}
+            {props.text || props.children}
         </button>
     )
 }

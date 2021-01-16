@@ -1,22 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import CarCard from './CarCard.jsx'
+import Banner from './Banner.jsx'
+// import Cart from './Cart.jsx'
+import Favorite from './Favorite.jsx'
 
-const MainPage = (props) => {
+const MainPage = () => {
     const [products, setProducts] = useState([])
     useEffect(() => getData(), [])
 
     const getData = async () => {
-        const res = await fetch('./cars.json')
+        const res = await fetch('./products.json')
         const data = await res.json()
         setProducts((prev) => [...prev, ...data.cars])
     }
+    const bannerURL = 'https://e7.pngegg.com/pngimages/638/645/png-clipart-logo-banner-brand-product-design-mechanics-tool-trailer-text-logo.png'
+
     return (
-        <div className="container">
-            <div className="cars-gallery">
-                {products.map((car) => (
-                    <CarCard src={car.url} name={car.name} price={car.price} color={car.color} article={car.article} key={car.url} />
-                ))}
+        <div>
+            <Banner bannerURL={bannerURL} />
+            <div className="container">
+                <Favorite items={products} />
+                <div className="cars-gallery">
+                    {products.map((product) => (
+                        <CarCard src={product.url} name={product.name} price={product.price} description={product.description} article={product.article} key={product.url} />
+                    ))}
+                </div>
             </div>
         </div>
     )
