@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import CarCard from './CarCard.jsx'
 import Banner from './Banner.jsx'
-// import Cart from './Cart.jsx'
 import Favorite from './Favorite.jsx'
 
 const MainPage = () => {
     const [products, setProducts] = useState([])
+    const [render, setRender] = useState(false)
     useEffect(() => getData(), [])
 
     const getData = async () => {
@@ -19,11 +19,22 @@ const MainPage = () => {
     return (
         <div>
             <Banner bannerURL={bannerURL} />
+            <Favorite products={products} render={render} onStarClick={() => setRender((prev) => !prev)} />
             <div className="container">
-                <Favorite items={products} />
                 <div className="cars-gallery">
                     {products.map((product) => (
-                        <CarCard src={product.url} name={product.name} price={product.price} description={product.description} article={product.article} key={product.url} />
+                        <CarCard
+                            name={product.name}
+                            description={product.description}
+                            src={product.url}
+                            price={product.price}
+                            article={product.article}
+                            key={product.url}
+                            showBtn={true}
+                            showStar={true}
+                            render={render}
+                            onStarClick={() => setRender((prev) => !prev)}
+                        />
                     ))}
                 </div>
             </div>

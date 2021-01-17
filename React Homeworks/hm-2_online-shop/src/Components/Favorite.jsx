@@ -1,15 +1,27 @@
 import React, { useEffect } from 'react'
-import CarInfo from './CarInfo'
+import CarCard from './CarCard'
 
 export const Favorite = (props) => {
-    useEffect(() => true, [localStorage])
     return (
-        <section className="favorite-section">
+        <section className="container">
             <h3>Избранные товары</h3>
             <div className="favorite-items">
-                {props.items.map((item, idx) => {
-                    if (localStorage.getItem(item.name)) {
-                        return <CarInfo key={idx} name={item.name} showStar={true} isFavorite={true} description={item.description} price={item.price} article={item.article} />
+                {props.products.map((product) => {
+                    if (localStorage.getItem(product.name)) {
+                        return (
+                            <CarCard
+                                name={product.name}
+                                description={product.description}
+                                src={product.url}
+                                price={product.price}
+                                article={product.article}
+                                key={product.url}
+                                showBtn={false}
+                                showStar={true}
+                                render={props.render}
+                                onStarClick={props.onStarClick}
+                            />
+                        )
                     }
                 })}
             </div>

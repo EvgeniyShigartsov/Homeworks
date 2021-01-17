@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Modal from './Modal.jsx'
-import CarInfo from './CarInfo.jsx'
+import StarSvg from './StarSvg.jsx'
+import Button from './Button.jsx'
 
 const CarCard = (props) => {
     const [isOpenModal, setIsOpenModal] = useState(false)
-    const [isFavorite, setIsFavorite] = useState(false)
-    useEffect(() => (localStorage.getItem(props.name) ? setIsFavorite(true) : null), [])
-
     const modalFields = {
         header: 'Add to cart',
         text: `Add to cart this product ?`,
@@ -16,35 +14,28 @@ const CarCard = (props) => {
             back: 'Back',
         },
     }
-    const checkItemInLocalStorage = (itemName) => {
-        if (localStorage.getItem(itemName)) {
-            localStorage.removeItem(itemName)
-            setIsFavorite(false)
-        } else {
-            localStorage.setItem(itemName, itemName)
-            setIsFavorite(true)
-        }
-        setIsOpenModal(() => false)
-    }
 
     const modalWrapperHandler = (e) => {
         if (e.target.id !== 'modal-wrapper') return
-        setIsOpenModal(() => false)
+        setIsOpenModal(false)
     }
     return (
         <div className="card-wrapper">
             <img className="car-img" src={props.src} alt={props.name} />
-            <CarInfo
-                name={props.name}
-                price={props.price}
-                article={props.article}
-                description={props.description}
-                showStar={true}
-                showBtn={true}
-                onBtnClick={() => setIsOpenModal((prev) => !prev)}
-                onStarClick={() => checkItemInLocalStorage(props.name)}
-                isFavorite={isFavorite}
-            />
+            <div className="card-info">
+                <div className="title-group card-field">
+                    <h4 className="card-title">{props.name}</h4>
+                    {props.showStar && <StarSvg labelFor={props.name} render={props.render} onStarClick={props.onStarClick} />}
+                </div>
+                <p className="card-field">{props.description}</p>
+                <p className="card-field">
+                    Цена: {props.price}
+                    <span>$</span>
+                </p>
+                <p className="card-field">Код товара: {props.article}</p>
+                {props.showBtn && <Button classList="btn-cart card-field" onClick={() => setIsOpenModal(true)} backgroundColor="#28a745" text="Add to cart" />}
+            </div>
+
             {isOpenModal && (
                 <Modal
                     text={modalFields.text}
@@ -52,11 +43,9 @@ const CarCard = (props) => {
                     btnText={modalFields.btnText}
                     isOpen={isOpenModal}
                     onWrapperClick={modalWrapperHandler}
-                    onCancelBtnClick={() => setIsOpenModal((prev) => !prev)}
-                    onConfrimBtnClick={() => checkItemInLocalStorage(props.name)}
-                >
-                    <CarInfo name={props.name} price={props.price} article={props.article} color={props.color} />
-                </Modal>
+                    onCancelBtnClick={() => setIsOpenModal(false)}
+                    onConfrimBtnClick={() => setIsOpenModal(false)}
+                ></Modal>
             )}
         </div>
     )
