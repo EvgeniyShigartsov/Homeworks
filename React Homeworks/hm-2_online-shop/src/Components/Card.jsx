@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Modal from './Modal.jsx'
 import StarSvg from './StarSvg.jsx'
@@ -25,7 +25,7 @@ const CarCard = (props) => {
             <div className="card-info">
                 <div className="title-group card-field">
                     <h4 className="card-title">{props.name}</h4>
-                    {props.showStar && <StarSvg labelFor={props.name} render={props.render} onStarClick={props.onStarClick} />}
+                    {props.showStar && <StarSvg isFavorite={props.isFavorite} onStarClick={props.onStarClick} />}
                 </div>
                 <p className="card-field">{props.description}</p>
                 <p className="card-field">

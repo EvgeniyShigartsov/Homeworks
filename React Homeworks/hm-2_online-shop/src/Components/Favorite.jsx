@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import CarCard from './CarCard'
+import React from 'react'
+import CarCard from './Card'
 
 export const Favorite = (props) => {
     return (
@@ -7,7 +7,7 @@ export const Favorite = (props) => {
             <h3>Избранные товары</h3>
             <div className="favorite-items">
                 {props.products.map((product) => {
-                    if (localStorage.getItem(product.name)) {
+                    if (product.isFavorite) {
                         return (
                             <CarCard
                                 name={product.name}
@@ -18,8 +18,8 @@ export const Favorite = (props) => {
                                 key={product.url}
                                 showBtn={false}
                                 showStar={true}
-                                render={props.render}
-                                onStarClick={props.onStarClick}
+                                isFavorite={product.isFavorite}
+                                onStarClick={() => props.onStarClick(product.name)}
                             />
                         )
                     }
