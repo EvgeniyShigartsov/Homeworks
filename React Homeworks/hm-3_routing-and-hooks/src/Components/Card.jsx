@@ -7,20 +7,12 @@ import Button from './Button.jsx'
 const CarCard = (props) => {
     const [isOpenModal, setIsOpenModal] = useState(false)
 
-    const modalFields = {
-        header: 'Добавление в корзину',
-        text: 'Добавить этот товар в корзину ?',
-        btnText: {
-            ok: 'Добавить в корзину',
-            cancel: 'Назад',
-        },
-    }
     const modalWrapperHandler = (e) => {
         if (e.target.id !== 'modal-wrapper') return
         setIsOpenModal(false)
     }
     const callPropsFuncAndCloseModal = () => {
-        props.onConfrimBtnClick()
+        props.onBtnClick()
         setIsOpenModal(false)
     }
 
@@ -38,14 +30,14 @@ const CarCard = (props) => {
                     <span>$</span>
                 </p>
                 <p className="card-field">Код товара: {props.article}</p>
-                {props.showBtn && <Button classList="btn-cart card-field" onClick={() => setIsOpenModal(true)} backgroundColor="#28a745" text="Добавить в корзину" />}
+                {props.showBtn && <Button classList="btn-card card-field" onClick={() => setIsOpenModal(true)} backgroundColor={props.btnBackground} text={props.cardBtnText} />}
             </div>
 
             {isOpenModal && (
                 <Modal
-                    text={modalFields.text}
-                    header={modalFields.header}
-                    btnText={modalFields.btnText}
+                    text={props.modalFields.text}
+                    header={props.modalFields.header}
+                    btnText={props.modalFields.btnText}
                     isOpen={isOpenModal}
                     onWrapperClick={modalWrapperHandler}
                     onCancelBtnClick={() => setIsOpenModal(false)}

@@ -10,9 +10,6 @@ a {
     text-decoration: none;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
 .banner-wrapper {
     .banner {
         min-width: 100%;
@@ -38,6 +35,11 @@ code {
     text-align: center;
     font-size: 24px;
     margin: 20px 0;
+}
+.cart-section {
+    .cart-btn {
+        background-color: rgb(40, 167, 69);
+    }
 }
 .favorite-section {
     .favorite-items {
@@ -65,7 +67,7 @@ code {
     margin: 0 auto 100px auto;
     padding: 0 20px;
 }
-.cars-gallery,
+.card-gallery,
 .cart-items {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -101,7 +103,7 @@ code {
         }
     }
 
-    .btn-cart {
+    .btn-card {
         width: 100%;
         padding: 7px 10px;
         border-radius: 5px;
@@ -143,7 +145,7 @@ code {
             }
         }
 
-        .btn-cart {
+        .btn-card {
             width: 100%;
             padding: 7px 10px;
             border-radius: 5px;

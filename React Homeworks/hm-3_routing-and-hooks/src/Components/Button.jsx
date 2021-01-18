@@ -13,6 +13,7 @@ export default Button
 Button.defaultProps = {
     onClick: () => null,
 }
+
 Button.propTypes = {
     classList: PropTypes.string,
     backgroundColor: PropTypes.string,

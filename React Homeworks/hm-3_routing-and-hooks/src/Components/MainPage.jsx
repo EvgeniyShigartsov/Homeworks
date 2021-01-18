@@ -9,16 +9,25 @@ import Cart from './Cart.jsx'
 const MainPage = () => {
     const [products, setProducts] = useState([])
     const [cartList, setCartList] = useState([])
+    const [cartSum, setCartSum] = useState(0)
     useEffect(() => getData(), [])
 
     const addProductToLocalStorage = (productName, productPrice) => {
         localStorage.setItem(productName, productPrice)
+
         const newCartList = products.filter((product) => localStorage.getItem(product.name))
+        const newCartSum = newCartList.reduce((acc, product) => (acc += product.price), 0)
+
+        setCartSum(() => newCartSum)
         setCartList(() => newCartList)
     }
-    const removeProductFromLocalStorage = (productName, _) => {
+    const removeProductFromLocalStorage = (productName) => {
         localStorage.removeItem(productName)
+
         const newCartList = cartList.filter((product) => product.name !== productName)
+        const newCartSum = newCartList.reduce((acc, product) => (acc += product.price), 0)
+
+        setCartSum(() => newCartSum)
         setCartList(() => newCartList)
     }
 
@@ -26,7 +35,11 @@ const MainPage = () => {
         const res = await fetch('./products.json')
         const data = await res.json()
         setProducts(() => data.products)
-        setCartList(() => data.products.filter((product) => localStorage.getItem(product.name)))
+
+        const newCartList = data.products.filter((product) => localStorage.getItem(product.name))
+        const newCartSum = newCartList.reduce((acc, product) => (acc += product.price), 0)
+        setCartSum(() => newCartSum)
+        setCartList(() => newCartList)
     }
     const bannerURL = 'https://e7.pngegg.com/pngimages/638/645/png-clipart-logo-banner-brand-product-design-mechanics-tool-trailer-text-logo.png'
 
@@ -60,8 +73,10 @@ const MainPage = () => {
                     </Link>
                 </nav>
                 <Route exact path="/">
-                    <Cart cartList={cartList} />
-                    <ProductsList products={products} onConfrimBtnClick={addProductToLocalStorage} onStarClick={checkIsFavoriteProduct} />
+                    <ProductsList products={products} onBtnClick={addProductToLocalStorage} onStarClick={checkIsFavoriteProduct} />
+                </Route>
+                <Route exact path="/cart">
+                    <Cart cartList={cartList} onBtnClick={removeProductFromLocalStorage} cartSum={cartSum} />
                 </Route>
                 <Route exact path="/favorite">
                     <Favorite products={products} onStarClick={checkIsFavoriteProduct} />
