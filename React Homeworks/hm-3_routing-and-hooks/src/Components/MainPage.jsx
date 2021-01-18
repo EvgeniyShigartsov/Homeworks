@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Banner from './Banner.jsx'
 import Favorite from './Favorite.jsx'
@@ -31,9 +32,23 @@ const MainPage = () => {
 
     return (
         <div>
-            <Banner bannerURL={bannerURL} />
-            <Favorite products={products} onStarClick={findProduct} />
-            <ProductsList products={products} onStarClick={findProduct} />
+            <Router>
+                <Banner bannerURL={bannerURL} />
+                <nav className="navigation">
+                    <Link className="nav-link" to="/">
+                        Каталог
+                    </Link>
+                    <Link className="nav-link" to="/favorite">
+                        Избранное
+                    </Link>
+                </nav>
+                <Route exact path="/">
+                    <ProductsList products={products} onStarClick={findProduct} />
+                </Route>
+                <Route exact path="/favorite">
+                    <Favorite products={products} onStarClick={findProduct} />
+                </Route>
+            </Router>
         </div>
     )
 }

@@ -21,7 +21,7 @@ const CarCard = (props) => {
     }
     return (
         <div className="card-wrapper">
-            <img className="car-img" src={props.src} alt={props.name} />
+            <img className="card-img" src={props.src} alt={props.name} />
             <div className="card-info">
                 <div className="title-group card-field">
                     <h4 className="card-title">{props.name}</h4>

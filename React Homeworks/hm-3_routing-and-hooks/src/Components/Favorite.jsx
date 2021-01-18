@@ -3,8 +3,8 @@ import CarCard from './Card'
 
 export const Favorite = (props) => {
     return (
-        <section className="container">
-            <h3>Избранные товары</h3>
+        <section className="container favorite-section">
+            <h3 className="favorites-header">Избранные товары</h3>
             <div className="favorite-items">
                 {props.products.map((product) => {
                     if (product.isFavorite) {
@@ -23,6 +23,7 @@ export const Favorite = (props) => {
                             />
                         )
                     }
+                    return null
                 })}
             </div>
         </section>
