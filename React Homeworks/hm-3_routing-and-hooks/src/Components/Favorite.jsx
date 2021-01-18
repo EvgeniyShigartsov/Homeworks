@@ -2,30 +2,31 @@ import React from 'react'
 import CarCard from './Card'
 
 export const Favorite = (props) => {
+    const favorites = []
+
+    props.products.forEach((product) => {
+        if (product.isFavorite) {
+            favorites.push(
+                <CarCard
+                    name={product.name}
+                    description={product.description}
+                    src={product.url}
+                    price={product.price}
+                    article={product.article}
+                    key={product.url}
+                    showBtn={false}
+                    showStar={true}
+                    isFavorite={product.isFavorite}
+                    onStarClick={() => props.onStarClick(product.name)}
+                />
+            )
+        }
+    })
+
     return (
         <section className="container favorite-section">
-            <h3 className="favorites-header">Избранные товары</h3>
-            <div className="favorite-items">
-                {props.products.map((product) => {
-                    if (product.isFavorite) {
-                        return (
-                            <CarCard
-                                name={product.name}
-                                description={product.description}
-                                src={product.url}
-                                price={product.price}
-                                article={product.article}
-                                key={product.url}
-                                showBtn={false}
-                                showStar={true}
-                                isFavorite={product.isFavorite}
-                                onStarClick={() => props.onStarClick(product.name)}
-                            />
-                        )
-                    }
-                    return null
-                })}
-            </div>
+            <h3 className="section-headers">Избранные товары</h3>
+            <div className="favorite-items">{favorites.length ? favorites : <span>Список пуст</span>}</div>
         </section>
     )
 }

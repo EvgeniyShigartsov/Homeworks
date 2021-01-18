@@ -1,12 +1,13 @@
 import React from 'react'
-import CarCard from './Card'
+import Card from './Card'
 
 export const ProductsList = (props) => {
     return (
         <div className="container">
+            <h3 className="section-headers">Каталог товаров</h3>
             <div className="cars-gallery">
                 {props.products.map((product) => (
-                    <CarCard
+                    <Card
                         name={product.name}
                         description={product.description}
                         src={product.url}
@@ -17,6 +18,7 @@ export const ProductsList = (props) => {
                         showStar={true}
                         isFavorite={product.isFavorite}
                         onStarClick={() => props.onStarClick(product.name)}
+                        onConfrimBtnClick={() => props.onConfrimBtnClick(product.name, product.price)}
                     />
                 ))}
             </div>

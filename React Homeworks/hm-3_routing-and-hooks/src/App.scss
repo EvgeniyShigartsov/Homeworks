@@ -33,14 +33,13 @@ code {
         background-color: #6c757d;
     }
 }
-
+.section-headers {
+    color: #0d6efd;
+    text-align: center;
+    font-size: 24px;
+    margin: 20px 0;
+}
 .favorite-section {
-    .favorites-header {
-        color: #0d6efd;
-        text-align: center;
-        font-size: 24px;
-        margin: 20px 0;
-    }
     .favorite-items {
         display: flex;
         flex-wrap: wrap;
@@ -51,7 +50,7 @@ code {
 
         .card-wrapper {
             .card-info {
-                min-height: 200px;
+                min-height: 150px;
             }
 
             .card-img {
@@ -63,10 +62,11 @@ code {
 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 100px auto;
     padding: 0 20px;
 }
-.cars-gallery {
+.cars-gallery,
+.cart-items {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;

@@ -6,19 +6,24 @@ import Button from './Button.jsx'
 
 const CarCard = (props) => {
     const [isOpenModal, setIsOpenModal] = useState(false)
+
     const modalFields = {
-        header: 'Add to cart',
-        text: `Add to cart this product ?`,
+        header: 'Добавление в корзину',
+        text: 'Добавить этот товар в корзину ?',
         btnText: {
-            add: 'Add to cart',
-            back: 'Back',
+            ok: 'Добавить в корзину',
+            cancel: 'Назад',
         },
     }
-
     const modalWrapperHandler = (e) => {
         if (e.target.id !== 'modal-wrapper') return
         setIsOpenModal(false)
     }
+    const callPropsFuncAndCloseModal = () => {
+        props.onConfrimBtnClick()
+        setIsOpenModal(false)
+    }
+
     return (
         <div className="card-wrapper">
             <img className="card-img" src={props.src} alt={props.name} />
@@ -33,7 +38,7 @@ const CarCard = (props) => {
                     <span>$</span>
                 </p>
                 <p className="card-field">Код товара: {props.article}</p>
-                {props.showBtn && <Button classList="btn-cart card-field" onClick={() => setIsOpenModal(true)} backgroundColor="#28a745" text="Add to cart" />}
+                {props.showBtn && <Button classList="btn-cart card-field" onClick={() => setIsOpenModal(true)} backgroundColor="#28a745" text="Добавить в корзину" />}
             </div>
 
             {isOpenModal && (
@@ -44,8 +49,20 @@ const CarCard = (props) => {
                     isOpen={isOpenModal}
                     onWrapperClick={modalWrapperHandler}
                     onCancelBtnClick={() => setIsOpenModal(false)}
-                    onConfrimBtnClick={() => setIsOpenModal(false)}
-                ></Modal>
+                    onConfrimBtnClick={callPropsFuncAndCloseModal}
+                >
+                    <div className="card-info">
+                        <div className="title-group card-field">
+                            <h4 className="card-title">{props.name}</h4>
+                        </div>
+                        <p className="card-field">{props.description}</p>
+                        <p className="card-field">
+                            Цена: {props.price}
+                            <span>$</span>
+                        </p>
+                        <p className="card-field">Код товара: {props.article}</p>
+                    </div>
+                </Modal>
             )}
         </div>
     )
