@@ -36,10 +36,10 @@ const MainPage = () => {
         const data = await res.json()
         setProducts(() => data.products)
 
-        const newCartList = data.products.filter((product) => localStorage.getItem(product.name))
-        const newCartSum = newCartList.reduce((acc, product) => (acc += product.price), 0)
-        setCartSum(() => newCartSum)
-        setCartList(() => newCartList)
+        const chekProductInLocalStorage = data.products.filter((product) => localStorage.getItem(product.name))
+        const getCartSum = chekProductInLocalStorage.reduce((acc, product) => (acc += product.price), 0)
+        setCartSum(() => getCartSum)
+        setCartList(() => chekProductInLocalStorage)
     }
     const bannerURL = 'https://e7.pngegg.com/pngimages/638/645/png-clipart-logo-banner-brand-product-design-mechanics-tool-trailer-text-logo.png'
 
