@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { getData } from '../store/index.js'
+import { getData, addProductToCart, removeProductFromCart } from '../store/index.js'
 
 import Banner from './Banner.jsx'
 import Favorite from './Favorite.jsx'
@@ -11,7 +11,7 @@ import Cart from './Cart.jsx'
 
 const mapStateToProps = (state) => ({ products: state.products, cartList: state.cartList, cartSum: state.cartSum })
 
-export const MainPage = connect(mapStateToProps, { getData })((props) => {
+export const MainPage = connect(mapStateToProps, { getData, addProductToCart, removeProductFromCart })((props) => {
     useEffect(() => props.getData(), [])
 
     const bannerURL = 'https://e7.pngegg.com/pngimages/638/645/png-clipart-logo-banner-brand-product-design-mechanics-tool-trailer-text-logo.png'
@@ -32,10 +32,10 @@ export const MainPage = connect(mapStateToProps, { getData })((props) => {
                     </Link>
                 </nav>
                 <Route exact path="/">
-                    <ProductsList products={props.products} onBtnClick={() => null} onStarClick={() => null} />
+                    <ProductsList products={props.products} onBtnClick={props.addProductToCart} onStarClick={() => null} />
                 </Route>
                 <Route exact path="/cart">
-                    <Cart cartList={props.cartList} onBtnClick={() => null} cartSum={props.cartSum} onStarClick={() => null} />
+                    <Cart cartList={props.cartList} onBtnClick={props.removeProductFromCart} cartSum={props.cartSum} onStarClick={() => null} />
                 </Route>
                 <Route exact path="/favorite">
                     <Favorite products={props.products} onStarClick={() => null} />
@@ -50,25 +50,6 @@ MainPage.propTypes = {
 }
 
 const string = `
-// const addProductToLocalStorage = (productName, productPrice) => {
-    //     localStorage.setItem(productName, productPrice)
-
-    //     const newCartList = products.filter((product) => localStorage.getItem(product.name))
-    //     const newCartSum = newCartList.reduce((acc, product) => (acc += product.price), 0)
-
-    //     setCartSum(() => newCartSum)
-    //     setCartList(() => newCartList)
-    // }
-    // const removeProductFromLocalStorage = (productName) => {
-    //     localStorage.removeItem(productName)
-
-    //     const newCartList = cartList.filter((product) => product.name !== productName)
-    //     const newCartSum = newCartList.reduce((acc, product) => (acc += product.price), 0)
-
-    //     setCartSum(() => newCartSum)
-    //     setCartList(() => newCartList)
-    // }
-
 
 // const checkIsFavoriteProduct = (productName) => {
     //     const res = products.find((product) => product.name === productName)

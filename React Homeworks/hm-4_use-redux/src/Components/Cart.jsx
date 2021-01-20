@@ -12,7 +12,7 @@ export const Cart = (props) => {
             cancel: 'Назад',
         },
     }
-    const cartList = props.cartList.map((product) => (
+    const cartList = props.cartList.map((product, _, cartList) => (
         <Card
             name={product.name}
             description={product.description}
@@ -25,7 +25,7 @@ export const Cart = (props) => {
             isFavorite={product.isFavorite}
             cardBtnText="Удалить"
             btnBackground="#6c757d"
-            onBtnClick={() => props.onBtnClick(product.name)}
+            onBtnClick={() => props.onBtnClick(cartList, product.name)}
             onStarClick={() => props.onStarClick(product.name)}
             modalFields={modalFields}
         />

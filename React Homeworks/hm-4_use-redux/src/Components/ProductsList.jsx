@@ -10,12 +10,11 @@ export const ProductsList = (props) => {
             cancel: 'Назад',
         },
     }
-
     return (
         <div className="container">
             <h3 className="section-headers">Каталог товаров</h3>
             <div className="card-gallery">
-                {props.products.map((product) => (
+                {props.products.map((product, _, products) => (
                     <Card
                         name={product.name}
                         description={product.description}
@@ -26,7 +25,7 @@ export const ProductsList = (props) => {
                         showStar={true}
                         isFavorite={product.isFavorite}
                         onStarClick={() => props.onStarClick(product.name)}
-                        onBtnClick={() => props.onBtnClick(product.name, product.price)}
+                        onBtnClick={() => props.onBtnClick(products, product.name, product.price)}
                         showBtn={true}
                         cardBtnText="Добавить в корзину"
                         btnBackground="#28a745"

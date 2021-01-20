@@ -7,7 +7,6 @@ const initialState = {
     cartSum: 0,
 }
 
-const SET_PRODUCTS_LIST = 'SET_PRODUCTS_LIST'
 const SET_CART_LIST = 'SET_CART_LIST'
 const SET_FETCHED_DATA = 'SET_FETCHED_DATA'
 
@@ -21,16 +20,10 @@ const reducer = (state = initialState, action) => {
                 cartSum: action.payload.cartSum,
             }
         }
-        case SET_PRODUCTS_LIST: {
-            return {
-                ...state,
-                products: [...action.payload.products],
-            }
-        }
         case SET_CART_LIST: {
             return {
                 ...state,
-                cartList: [action.payload.cartList],
+                cartList: [...action.payload.cartList],
                 cartSum: action.payload.cartSum,
             }
         }
@@ -40,9 +33,51 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export const setProductsList = (payload) => ({ type: 'SET_PRODUCTS_LIST', payload })
 export const setCartList = (payload) => ({ type: 'SET_CART_LIST', payload })
 export const setFetchedData = (payload) => ({ type: 'SET_FETCHED_DATA', payload })
+
+const getSum = (arrayOfProducts) => arrayOfProducts.reduce((acc, product) => (acc += product.price), 0) // Helper
+
+export const addProductToCart = (products, productName, productPrice) => (dispatch) => {
+    localStorage.setItem(productName, productPrice)
+    const newCartList = products.filter((product) => localStorage.getItem(product.name))
+    const newCartSum = getSum(newCartList)
+
+    const updatedCartState = {
+        cartList: newCartList,
+        cartSum: newCartSum,
+    }
+    dispatch(setCartList(updatedCartState))
+}
+
+export const removeProductFromCart = (cartList, productName) => (dispatch) => {
+    localStorage.removeItem(productName)
+    const newCartList = cartList.filter((product) => product.name !== productName)
+    const newCartSum = getSum(newCartList)
+
+    const updatedCartState = {
+        cartList: newCartList,
+        cartSum: newCartSum,
+    }
+    dispatch(setCartList(updatedCartState))
+}
+
+const string = `
+
+// const checkIsFavoriteProduct = (productName) => {
+    //     const res = products.find((product) => product.name === productName)
+    //     if (res) {
+    //         const newState = [...products]
+    //         for (let item of newState) {
+    //             if (item.name === res.name) {
+    //                 item.isFavorite = !item.isFavorite
+    //                 break
+    //             }
+    //         }
+    //         setProducts(() => newState)
+    //     }
+    // }
+`
 
 export const getData = () => async (dispatch) => {
     try {
@@ -60,7 +95,8 @@ export const getData = () => async (dispatch) => {
         }
         dispatch(setFetchedData(newState))
     } catch (error) {
-        alert(error)
+        alert(`getData func error`)
+        console.log(error)
     }
 }
 
