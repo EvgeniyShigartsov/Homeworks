@@ -24,7 +24,7 @@ export const ProductsList = (props) => {
                         key={product.url}
                         showStar={true}
                         isFavorite={product.isFavorite}
-                        onStarClick={() => props.onStarClick(product.name)}
+                        onStarClick={() => props.onStarClick(products, product.name)}
                         onBtnClick={() => props.onBtnClick(products, product.name, product.price)}
                         showBtn={true}
                         cardBtnText="Добавить в корзину"

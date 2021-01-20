@@ -4,7 +4,7 @@ import CarCard from './Card'
 export const Favorite = (props) => {
     const favorites = []
 
-    props.products.forEach((product) => {
+    props.products.forEach((product, _, products) => {
         if (product.isFavorite) {
             favorites.push(
                 <CarCard
@@ -17,7 +17,7 @@ export const Favorite = (props) => {
                     showBtn={false}
                     showStar={true}
                     isFavorite={product.isFavorite}
-                    onStarClick={() => props.onStarClick(product.name)}
+                    onStarClick={() => props.onStarClick(products, product.name)}
                 />
             )
         }

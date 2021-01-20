@@ -9,22 +9,29 @@ const initialState = {
 
 const SET_CART_LIST = 'SET_CART_LIST'
 const SET_FETCHED_DATA = 'SET_FETCHED_DATA'
+const TOGGLE_IS_FAVORITE = 'TOGGLE_IS_FAVORITE'
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_FETCHED_DATA: {
             return {
                 ...state,
-                products: [...action.payload.products],
-                cartList: [...action.payload.cartList],
+                products: action.payload.products,
+                cartList: action.payload.cartList,
                 cartSum: action.payload.cartSum,
             }
         }
         case SET_CART_LIST: {
             return {
                 ...state,
-                cartList: [...action.payload.cartList],
+                cartList: action.payload.cartList,
                 cartSum: action.payload.cartSum,
+            }
+        }
+        case TOGGLE_IS_FAVORITE: {
+            return {
+                ...state,
+                products: action.payload,
             }
         }
         default: {
@@ -33,8 +40,9 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export const setCartList = (payload) => ({ type: 'SET_CART_LIST', payload })
-export const setFetchedData = (payload) => ({ type: 'SET_FETCHED_DATA', payload })
+const setCartList = (payload) => ({ type: 'SET_CART_LIST', payload })
+const setFetchedData = (payload) => ({ type: 'SET_FETCHED_DATA', payload })
+const toggleIsFavorite = (payload) => ({ type: 'TOGGLE_IS_FAVORITE', payload })
 
 const getSum = (arrayOfProducts) => arrayOfProducts.reduce((acc, product) => (acc += product.price), 0) // Helper
 
@@ -61,23 +69,21 @@ export const removeProductFromCart = (cartList, productName) => (dispatch) => {
     }
     dispatch(setCartList(updatedCartState))
 }
+export const toggleIsFavoriteProduct = (allProducts, productName) => (dispatch) => {
+    const product = allProducts.find((product) => product.name === productName)
 
-const string = `
+    if (product) {
+        const productsWillUpdated = [...allProducts]
 
-// const checkIsFavoriteProduct = (productName) => {
-    //     const res = products.find((product) => product.name === productName)
-    //     if (res) {
-    //         const newState = [...products]
-    //         for (let item of newState) {
-    //             if (item.name === res.name) {
-    //                 item.isFavorite = !item.isFavorite
-    //                 break
-    //             }
-    //         }
-    //         setProducts(() => newState)
-    //     }
-    // }
-`
+        for (let currentProduct of productsWillUpdated) {
+            if (currentProduct.name === product.name) {
+                currentProduct.isFavorite = !currentProduct.isFavorite
+                break
+            }
+        }
+        dispatch(toggleIsFavorite(productsWillUpdated))
+    }
+}
 
 export const getData = () => async (dispatch) => {
     try {

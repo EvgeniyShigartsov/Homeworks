@@ -4,6 +4,7 @@ import Button from './Button.jsx'
 import Card from './Card.jsx'
 
 export const Cart = (props) => {
+    const allProducts = props.allProducts
     const modalFields = {
         header: 'Удаление из корзины',
         text: 'Удалить этот товар из корзины ?',
@@ -26,7 +27,7 @@ export const Cart = (props) => {
             cardBtnText="Удалить"
             btnBackground="#6c757d"
             onBtnClick={() => props.onBtnClick(cartList, product.name)}
-            onStarClick={() => props.onStarClick(product.name)}
+            onStarClick={() => props.onStarClick(allProducts, product.name)}
             modalFields={modalFields}
         />
     ))
