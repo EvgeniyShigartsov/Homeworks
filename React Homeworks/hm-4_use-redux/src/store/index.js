@@ -60,7 +60,6 @@ const reducer = (state = initialState, action) => {
             }
         }
         case SHOW_MODAL: {
-            console.log(action)
             return {
                 ...state,
                 modal: {
