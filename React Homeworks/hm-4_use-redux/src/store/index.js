@@ -65,7 +65,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 modal: {
                     isOpen: !state.modal.isOpen,
-                    content: action.payload || state.modal.content, // при закрытии модального окна поля уже не нужны, но что бы не ломать общуюю структуру оставляю те поля что были. Что бы быть уверенным что ничего не сломается из-за неправильной структуры.
+                    content: action.payload,
                 },
             }
         }
@@ -75,7 +75,6 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-//action creators
 const setCartList = (payload) => ({ type: 'SET_CART_LIST', payload })
 const setFetchedData = (payload) => ({ type: 'SET_FETCHED_DATA', payload })
 const toggleIsFavorite = (payload) => ({ type: 'TOGGLE_IS_FAVORITE', payload })
@@ -84,7 +83,14 @@ const showModal = (payload) => ({ type: 'SHOW_MODAL', payload })
 // Helper
 const getSum = (arrayOfProducts) => arrayOfProducts.reduce((acc, product) => (acc += product.price), 0)
 
-export const modalHandler = (modalContent) => (dispatch) => dispatch(showModal(modalContent))
+export const modalHandler = (modalContent = initialState.modal.content) => (dispatch) => {
+    if (modalContent === null) {
+        dispatch(showModal(initialState.modal.content))
+        // при закрытии модального окна поля уже не нужны, но что бы не ломать общуюю структуру ставлю поля из стартового стейта. Что бы быть уверенным что ничего не сломается из-за неправильной структуры.
+    } else {
+        dispatch(showModal(modalContent))
+    }
+}
 
 export const addProductToCart = (products, productName, productPrice) => (dispatch) => {
     localStorage.setItem(productName, productPrice)
