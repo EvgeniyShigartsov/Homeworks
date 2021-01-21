@@ -5,11 +5,36 @@ const initialState = {
     products: [],
     cartList: [],
     cartSum: 0,
+    modal: {
+        isOpen: false,
+        content: {
+            modalFields: {
+                header: '',
+                text: '',
+                btnText: {
+                    ok: '',
+                    cancel: '',
+                },
+            },
+            modalContent: {
+                productName: '',
+                description: '',
+                price: '',
+                article: '',
+            },
+            actions: {
+                onWrapperClick: () => null,
+                onCancelBtnClick: () => null,
+                onConfrimBtnClick: () => null,
+            },
+        },
+    },
 }
 
 const SET_CART_LIST = 'SET_CART_LIST'
 const SET_FETCHED_DATA = 'SET_FETCHED_DATA'
 const TOGGLE_IS_FAVORITE = 'TOGGLE_IS_FAVORITE'
+const SHOW_MODAL = 'SHOW_MODAL'
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -34,17 +59,31 @@ const reducer = (state = initialState, action) => {
                 products: action.payload,
             }
         }
+        case SHOW_MODAL: {
+            return {
+                ...state,
+                modal: {
+                    isOpen: !state.modal.isOpen,
+                    content: action.payload.modalContent,
+                },
+            }
+        }
         default: {
             return state
         }
     }
 }
 
+//action creators
 const setCartList = (payload) => ({ type: 'SET_CART_LIST', payload })
 const setFetchedData = (payload) => ({ type: 'SET_FETCHED_DATA', payload })
 const toggleIsFavorite = (payload) => ({ type: 'TOGGLE_IS_FAVORITE', payload })
+const showModal = (payload) => ({ type: 'SHOW_MODAL', payload })
 
-const getSum = (arrayOfProducts) => arrayOfProducts.reduce((acc, product) => (acc += product.price), 0) // Helper
+// Helper
+const getSum = (arrayOfProducts) => arrayOfProducts.reduce((acc, product) => (acc += product.price), 0)
+
+export const modalHandler = (modalContent) => (dispatch) => dispatch(showModal(modalContent))
 
 export const addProductToCart = (products, productName, productPrice) => (dispatch) => {
     localStorage.setItem(productName, productPrice)

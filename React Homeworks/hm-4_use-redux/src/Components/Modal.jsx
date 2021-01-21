@@ -3,19 +3,33 @@ import PropTypes from 'prop-types'
 import Button from './Button.jsx'
 
 export const Modal = (props) => {
-    return (
+    const content = props.modal.content
+
+    return !props.modal.isOpen ? null : ( // ! стоит что бы код было удобнее читать
         <div>
-            <div id="modal-wrapper" className="modal-wrapper" onClick={props.onWrapperClick}>
+            <div id="modal-wrapper" className="modal-wrapper" onClick={content.actions.onWrapperClick}>
                 <div className="modal-pop-up">
                     <div className="modal-content">
-                        <h3 className="modal-header">{props.header}</h3>
+                        <h3 className="modal-header">{content.modalFields.header}</h3>
                         <div className="modal-body">
-                            <p>{props.text}</p>
-                            <div className="modal-children">{props.children}</div>
+                            <p>{content.modalFields.text}</p>
+                            <div className="modal-children">
+                                <div className="card-info">
+                                    <div className="title-group card-field">
+                                        <h4 className="card-title">{content.modalContent.productName}</h4>
+                                    </div>
+                                    <p className="card-field">{content.modalContent.description}</p>
+                                    <p className="card-field">
+                                        Цена: {content.modalContent.price}
+                                        <span>$</span>
+                                    </p>
+                                    <p className="card-field">Код товара: {content.modalContent.article}</p>
+                                </div>
+                            </div>
                         </div>
                         <div className="modal-footer">
-                            <Button classList="btn" backgroundColor="#6c757d" text={props.btnText.cancel} onClick={props.onCancelBtnClick} />
-                            <Button classList="btn" backgroundColor="#28a745" text={props.btnText.ok} onClick={props.onConfrimBtnClick} />
+                            <Button classList="btn" backgroundColor="#6c757d" text={content.modalFields.btnText.cancel} onClick={content.actions.onCancelBtnClick} />
+                            <Button classList="btn" backgroundColor="#28a745" text={content.modalFields.btnText.cancel.ok} onClick={content.actions.onConfrimBtnClick} />
                         </div>
                     </div>
                 </div>

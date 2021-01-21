@@ -8,8 +8,9 @@ import Banner from './Banner.jsx'
 import Favorite from './Favorite.jsx'
 import ProductsList from './ProductsList.jsx'
 import Cart from './Cart.jsx'
+import Modal from './Modal.jsx'
 
-const mapStateToProps = (state) => ({ products: state.products, cartList: state.cartList, cartSum: state.cartSum })
+const mapStateToProps = (state) => ({ products: state.products, cartList: state.cartList, cartSum: state.cartSum, modal: state.modal })
 
 export const MainPage = connect(mapStateToProps, { getData, addProductToCart, removeProductFromCart, toggleIsFavoriteProduct })((props) => {
     useEffect(() => props.getData(), [])
@@ -31,6 +32,7 @@ export const MainPage = connect(mapStateToProps, { getData, addProductToCart, re
                         Избранное
                     </Link>
                 </nav>
+                <Modal modal={props.modal} />
                 <Route exact path="/">
                     <ProductsList products={props.products} onBtnClick={props.addProductToCart} onStarClick={props.toggleIsFavoriteProduct} />
                 </Route>
