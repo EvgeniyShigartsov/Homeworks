@@ -29,7 +29,7 @@ export const Modal = (props) => {
                         </div>
                         <div className="modal-footer">
                             <Button classList="btn" backgroundColor="#6c757d" text={content.modalFields.btnText.cancel} onClick={content.actions.onCancelBtnClick} />
-                            <Button classList="btn" backgroundColor="#28a745" text={content.modalFields.btnText.cancel.ok} onClick={content.actions.onConfrimBtnClick} />
+                            <Button classList="btn" backgroundColor="#28a745" text={content.modalFields.btnText.ok} onClick={content.actions.onConfrimBtnClick} />
                         </div>
                     </div>
                 </div>

@@ -60,11 +60,12 @@ const reducer = (state = initialState, action) => {
             }
         }
         case SHOW_MODAL: {
+            console.log(action)
             return {
                 ...state,
                 modal: {
                     isOpen: !state.modal.isOpen,
-                    content: action.payload.modalContent,
+                    content: action.payload || state.modal.content, // при закрытии модального окна поля уже не нужны, но что бы не ломать общуюю структуру оставляю те поля что были. Что бы быть уверенным что ничего не сломается из-за неправильной структуры.
                 },
             }
         }
@@ -95,6 +96,7 @@ export const addProductToCart = (products, productName, productPrice) => (dispat
         cartSum: newCartSum,
     }
     dispatch(setCartList(updatedCartState))
+    dispatch(showModal(modalHandler(null))) // закрытие модального окна
 }
 
 export const removeProductFromCart = (cartList, productName) => (dispatch) => {
@@ -107,6 +109,7 @@ export const removeProductFromCart = (cartList, productName) => (dispatch) => {
         cartSum: newCartSum,
     }
     dispatch(setCartList(updatedCartState))
+    dispatch(showModal(modalHandler(null))) // закрытие модального окна
 }
 export const toggleIsFavoriteProduct = (allProducts, productName) => (dispatch) => {
     const product = allProducts.find((product) => product.name === productName)
