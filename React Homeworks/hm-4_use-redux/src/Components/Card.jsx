@@ -14,7 +14,7 @@ export const CarCard = connect(mapStateToProps, { modalHandler })((props) => {
         props.modalHandler(null)
     }
 
-    const modalTest = {
+    const modalObj = {
         modalFields: props.modalFields,
         modalContent: {
             productName: props.name,
@@ -43,7 +43,7 @@ export const CarCard = connect(mapStateToProps, { modalHandler })((props) => {
                     <span>$</span>
                 </p>
                 <p className="card-field">Код товара: {props.article}</p>
-                {props.showBtn && <Button classList="btn-card card-field" onClick={() => props.modalHandler(modalTest)} backgroundColor={props.btnBackground} text={props.cardBtnText} />}
+                {props.showBtn && <Button classList="btn-card card-field" onClick={() => props.modalHandler(modalObj)} backgroundColor={props.btnBackground} text={props.cardBtnText} />}
             </div>
         </div>
     )
