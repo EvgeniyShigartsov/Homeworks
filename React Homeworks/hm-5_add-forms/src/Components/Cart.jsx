@@ -1,7 +1,7 @@
 import React from 'react'
 import CartIcon from './CartIcon.jsx'
-import Button from './Button.jsx'
 import Card from './Card.jsx'
+import DeliveryForm from './DeliveryForm.jsx'
 
 export const Cart = (props) => {
     const allProducts = props.allProducts
@@ -33,13 +33,14 @@ export const Cart = (props) => {
     ))
 
     return (
-        <section className="cart-section">
-            <div className="container">
-                <Button classList="btn cart-btn">
+        <section className="container">
+            <div className="cart-items">{cartList.length ? cartList : <span>Корзина пуста.</span>}</div>
+            <div className="delivery-box">
+                <div className="icon-box">
                     <CartIcon />
                     <div>Сумма: {props.cartSum}$</div>
-                </Button>
-                <div className="cart-items">{cartList.length ? cartList : <span>Корзина пуста.</span>}</div>
+                </div>
+                <DeliveryForm />
             </div>
         </section>
     )
