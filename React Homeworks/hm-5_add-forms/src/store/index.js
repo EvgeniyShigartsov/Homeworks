@@ -29,12 +29,15 @@ const initialState = {
             },
         },
     },
+    buyerData: {},
 }
 
 const SET_CART_LIST = 'SET_CART_LIST'
 const SET_FETCHED_DATA = 'SET_FETCHED_DATA'
 const TOGGLE_IS_FAVORITE = 'TOGGLE_IS_FAVORITE'
 const SHOW_MODAL = 'SHOW_MODAL'
+const CLEAR_CART = 'CLEAR_CART'
+const SAVE_BUYER_DATA = 'SAVE_BUYER_DATA'
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -68,6 +71,13 @@ const reducer = (state = initialState, action) => {
                 },
             }
         }
+        case CLEAR_CART: {
+            return {
+                ...state,
+                cartList: action.payload.cartList,
+                cartSum: action.payload.cartSum,
+            }
+        }
         default: {
             return state
         }
@@ -75,19 +85,21 @@ const reducer = (state = initialState, action) => {
 }
 
 const setCartList = (payload) => ({ type: 'SET_CART_LIST', payload })
+const setClearCart = (payload) => ({ type: 'CLEAR_CART', payload })
 const setFetchedData = (payload) => ({ type: 'SET_FETCHED_DATA', payload })
-const toggleIsFavorite = (payload) => ({ type: 'TOGGLE_IS_FAVORITE', payload })
-const showModal = (payload) => ({ type: 'SHOW_MODAL', payload })
+const setToggleIsFavorite = (payload) => ({ type: 'TOGGLE_IS_FAVORITE', payload })
+const setShowModal = (payload) => ({ type: 'SHOW_MODAL', payload })
+const setSaveBuyerData = (payload) => ({ type: 'SAVE_BUYER_DATA', payload })
 
 // Helper
 const getSum = (arrayOfProducts) => arrayOfProducts.reduce((acc, product) => (acc += product.price), 0)
 
 export const modalHandler = (modalContent = initialState.modal.content) => (dispatch) => {
     if (modalContent === null) {
-        dispatch(showModal(initialState.modal.content))
+        dispatch(setShowModal(initialState.modal.content))
         // при закрытии модального окна поля уже не нужны, но что бы не ломать общуюю структуру ставлю поля из стартового стейта. Что бы быть уверенным что ничего не сломается из-за неправильной структуры.
     } else {
-        dispatch(showModal(modalContent))
+        dispatch(setShowModal(modalContent))
     }
 }
 
@@ -101,7 +113,7 @@ export const addProductToCart = (products, productName, productPrice) => (dispat
         cartSum: newCartSum,
     }
     dispatch(setCartList(updatedCartState))
-    dispatch(showModal(modalHandler(null))) // закрытие модального окна
+    dispatch(setShowModal(modalHandler(null))) // закрытие модального окна
 }
 
 export const removeProductFromCart = (cartList, productName) => (dispatch) => {
@@ -114,8 +126,19 @@ export const removeProductFromCart = (cartList, productName) => (dispatch) => {
         cartSum: newCartSum,
     }
     dispatch(setCartList(updatedCartState))
-    dispatch(showModal(modalHandler(null))) // закрытие модального окна
+    dispatch(setShowModal(modalHandler(null))) // закрытие модального окна
 }
+export const clearCart = (cartList) => (dispatch) => {
+    if (!cartList.length) return
+
+    cartList.forEach((product) => localStorage.removeItem(product.name))
+    const updatedCartState = {
+        cartList: [],
+        cartSum: 0,
+    }
+    dispatch(setClearCart(updatedCartState))
+}
+
 export const toggleIsFavoriteProduct = (allProducts, productName) => (dispatch) => {
     const product = allProducts.find((product) => product.name === productName)
 
@@ -128,7 +151,7 @@ export const toggleIsFavoriteProduct = (allProducts, productName) => (dispatch) 
                 break
             }
         }
-        dispatch(toggleIsFavorite(productsWillUpdated))
+        dispatch(setToggleIsFavorite(productsWillUpdated))
     }
 }
 
@@ -152,6 +175,7 @@ export const getData = () => async (dispatch) => {
         console.log(error)
     }
 }
+export const saveBuyerData = (data) => (dispatch) => {}
 
 export const store = createStore(reducer, applyMiddleware(thunk))
 export default store

@@ -1,6 +1,8 @@
 import * as Yup from 'yup'
 import React from 'react'
 import { Formik, Field, Form } from 'formik'
+import { connect } from 'react-redux'
+import { clearCart } from '../store/index.js'
 
 const validationShema = Yup.object().shape({
     name: Yup.string().required('Необходимое поле'),
@@ -10,7 +12,9 @@ const validationShema = Yup.object().shape({
     phone: Yup.number().required('Необходимое поле').min(5, 'Слишком короткий номер'),
 })
 
-export const DeliveryForm = () => {
+const mapStateToProps = (state) => ({ cartList: state.cartList })
+
+export const DeliveryForm = connect(mapStateToProps, { clearCart })((props) => {
     return (
         <div className="form-container">
             <h3 className="delivery-header">Контакты для доставки</h3>
@@ -25,7 +29,10 @@ export const DeliveryForm = () => {
                 validationSchema={validationShema}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values)
+                    console.log(props.cartList)
                     resetForm()
+                    props.clearCart(props.cartList)
+                    alert('Заказ принят!')
                 }}
             >
                 {({ errors, touched }) => (
@@ -56,6 +63,6 @@ export const DeliveryForm = () => {
             </Formik>
         </div>
     )
-}
+})
 
 export default DeliveryForm

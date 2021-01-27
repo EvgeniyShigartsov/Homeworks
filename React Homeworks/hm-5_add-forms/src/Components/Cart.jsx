@@ -31,7 +31,6 @@ export const Cart = (props) => {
             modalFields={modalFields}
         />
     ))
-
     return (
         <section className="container">
             <div className="cart-items">{cartList.length ? cartList : <span>Корзина пуста.</span>}</div>
