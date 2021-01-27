@@ -29,7 +29,13 @@ const initialState = {
             },
         },
     },
-    buyerData: {},
+    buyerData: {
+        name: '',
+        surename: '',
+        age: 0,
+        adress: '',
+        phone: '',
+    },
 }
 
 const SET_CART_LIST = 'SET_CART_LIST'
@@ -76,6 +82,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 cartList: action.payload.cartList,
                 cartSum: action.payload.cartSum,
+            }
+        }
+        case SAVE_BUYER_DATA: {
+            return {
+                ...state,
+                buyerData: action.payload,
             }
         }
         default: {
@@ -129,8 +141,6 @@ export const removeProductFromCart = (cartList, productName) => (dispatch) => {
     dispatch(setShowModal(modalHandler(null))) // закрытие модального окна
 }
 export const clearCart = (cartList) => (dispatch) => {
-    if (!cartList.length) return
-
     cartList.forEach((product) => localStorage.removeItem(product.name))
     const updatedCartState = {
         cartList: [],
@@ -175,7 +185,7 @@ export const getData = () => async (dispatch) => {
         console.log(error)
     }
 }
-export const saveBuyerData = (data) => (dispatch) => {}
+export const saveBuyerData = (data) => (dispatch) => dispatch(setSaveBuyerData(data))
 
 export const store = createStore(reducer, applyMiddleware(thunk))
 export default store
