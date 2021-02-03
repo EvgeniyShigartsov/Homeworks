@@ -38,6 +38,7 @@ export const DeliveryForm = connect(mapStateToProps, { clearCart, saveBuyerData 
                     console.log(props.cartList)
                     props.clearCart(props.cartList)
                     props.saveBuyerData(values)
+                    resetForm()
                     alert('Заказ успешно создан!')
                 }}
             >
