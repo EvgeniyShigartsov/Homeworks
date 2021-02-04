@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
-
 import Favorite from './Favorite.jsx'
 import ProductsList from './ProductsList.jsx'
 import Cart from './Cart.jsx'
+import { connect } from 'react-redux'
+import { getData, toggleIsFavoriteProduct } from '../store/index.js'
 
-export const RouterComponent = (props) => {
+const mapStateToProps = (state) => ({ products: state.products })
+
+export const Pages = connect(mapStateToProps, { getData, toggleIsFavoriteProduct })((props) => {
+    useEffect(() => props.getData(), [])
+
     return (
         <div>
             <nav className="navigation">
@@ -20,15 +25,15 @@ export const RouterComponent = (props) => {
                 </Link>
             </nav>
             <Route exact path="/">
-                <ProductsList products={props.products} onBtnClick={props.addProductToCart} onStarClick={props.onStarClick} />
+                <ProductsList products={props.products} onStarClick={props.toggleIsFavoriteProduct} />
             </Route>
             <Route exact path="/cart">
-                <Cart cartList={props.cartList} allProducts={props.products} onBtnClick={props.removeProductFromCart} cartSum={props.cartSum} onStarClick={props.onStarClick} />
+                <Cart allProducts={props.products} onStarClick={props.toggleIsFavoriteProduct} />
             </Route>
             <Route exact path="/favorite">
-                <Favorite products={props.products} onStarClick={props.onStarClick} />
+                <Favorite products={props.products} onStarClick={props.toggleIsFavoriteProduct} />
             </Route>
         </div>
     )
-}
-export default RouterComponent
+})
+export default Pages

@@ -2,8 +2,12 @@ import React from 'react'
 import CartIcon from './CartIcon.jsx'
 import Card from './Card.jsx'
 import DeliveryForm from './DeliveryForm.jsx'
+import { connect } from 'react-redux'
+import { removeProductFromCart } from '../store/index.js'
 
-export const Cart = (props) => {
+const mapStateToProps = (state) => ({ cartList: state.cartList, cartSum: state.cartSum })
+
+export const Cart = connect(mapStateToProps, { removeProductFromCart })((props) => {
     const allProducts = props.allProducts
     const modalFields = {
         header: 'Удаление из корзины',
@@ -26,7 +30,7 @@ export const Cart = (props) => {
             isFavorite={product.isFavorite}
             cardBtnText="Удалить"
             btnBackground="#6c757d"
-            onBtnClick={() => props.onBtnClick(cartList, product.name)}
+            onBtnClick={() => props.removeProductFromCart(cartList, product.name)}
             onStarClick={() => props.onStarClick(allProducts, product.name)}
             modalFields={modalFields}
         />
@@ -43,5 +47,5 @@ export const Cart = (props) => {
             </div>
         </section>
     )
-}
+})
 export default Cart

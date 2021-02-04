@@ -1,8 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Button from './Button.jsx'
+import { connect } from 'react-redux'
 
-export const Modal = (props) => {
+const mapStateToProps = (state) => ({ modal: state.modal })
+
+export const Modal = connect(
+    mapStateToProps,
+    null
+)((props) => {
     const content = props.modal.content
 
     return !props.modal.isOpen ? null : ( // ! стоит что бы код было удобнее читать
@@ -34,7 +40,7 @@ export const Modal = (props) => {
             </div>
         </div>
     )
-}
+})
 export default Modal
 
 Modal.propTypes = {
